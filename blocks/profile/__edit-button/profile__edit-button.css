@@ -1,5 +1,5 @@
 .profile__edit-button { 
-  align-self: baseline;
+  align-self: end;
   width: 24px;
   height: 24px;
   padding: 0;
@@ -10,6 +10,7 @@
   align-items: center;
   transition: opacity .2s ease-out;
   cursor: pointer;
+  margin-bottom: 8px;
 }
 
 .profile__edit-button:hover {
@@ -21,5 +22,6 @@
     width: 18px;
     height: 18px;
     grid-column: 3/4;
+    margin-bottom: 5px;
   }
 }

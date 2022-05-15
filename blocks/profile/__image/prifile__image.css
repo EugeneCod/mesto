@@ -4,3 +4,10 @@
   border-radius: 50%;
   margin-right: 30px;
 }
+
+@media (max-width: 767px) {
+  .prifile__image {
+    margin-right: 0px;
+    margin-bottom: 22px;
+  }
+}

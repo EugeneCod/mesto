@@ -1,7 +1,22 @@
 .profile__profile-info {
   display: grid;
-  grid-template-columns: max-content min-content;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr min-content;
+  grid-template-rows: auto auto;
   grid-auto-flow: column;
   gap: 16px 18px;
+  max-width: 336px;
+  overflow: hidden;
+  margin-right: 40px;
+}
+
+@media (max-width: 767px) {
+  .profile__profile-info {
+    margin-right: 0;
+    margin-bottom: 36px;
+    gap: 14px 10px;
+    max-width: initial;
+    width: 100%;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr minmax(min-content, 200px) 1fr;
+  }
 }

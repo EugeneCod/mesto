@@ -1,0 +1,8 @@
+.elements__element {
+  background-color: #fff;
+  display: grid;
+  grid-template-columns: 75% 25%;
+  padding-bottom: 31px;
+  border-radius: 10px;
+  overflow: hidden;
+}

@@ -4,4 +4,16 @@
   line-height: 1.1428;
   font-weight: 500;
   align-self: baseline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 767px) {
+  .profile__name {
+    font-size: 27px;
+    grid-column: 2/3;
+    text-align: center;
+    max-width: 200px;
+  }
 }

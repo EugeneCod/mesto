@@ -11,6 +11,22 @@
 <body class="page">
   <div class="wrapper">
     <div class="container">
+      <div class="popup popup_opened">
+        <div class="popup__container">
+          <button class="popup__close-button">
+            <img src="./images/popup__close-icon.svg" alt="Закрыть" class="popup__close-icon">
+          </button>
+          <form class="edit-profile" id="edit-profile">
+            <fieldset class="edit-profile__fieldset" form="edit-profile">
+              <legend class="edit-profile__legend">Редактировать профиль
+              </legend>
+              <input type="text" name="name" id="name" placeholder="Жак-Ив Кусто" class="edit-profile__input-line">
+              <input type="text" name="about-self" id="about-self" placeholder="Исследователь океана" class="edit-profile__input-line">
+              <button type="button" class="edit-profile__button">Сохранить</button>
+            </fieldset>
+          </form>
+        </div>
+      </div>
       <header class="header">
         <a href="#" class="header__logo">
           <img src="./images/header__logo.svg" alt="Логотип" class="header__logo-image">
@@ -21,14 +37,62 @@
           <img src="./images/profile__image.jpg" alt="Аватар" class="prifile__image">
           <div class="profile__profile-info">
             <p class="profile__name">Жак-Ив Кусто</p>
-            <p class="profile__additional-info">Исследователь океана</p>
-            <img src="./images/profile__edit-button.svg" alt="Редактировать профиль" class="profile__edit-button">
+            <p class="profile__about-self">Исследователь океана</p>
+            <button type="button" class="profile__edit-button">
+              <img src="./images/profile__edit-icon.svg" alt="Редактировать профиль" class="profile__edit-icon">
+            </button>
           </div>
-          <img src="./images/profile__add-button.svg" alt="" class="profile__add-button">
+          <button type="button" class="profile__add-button">
+            <img src="./images/profile__add-icon.svg" alt="Добавить изображение" class="profile__add-icon">
+          </button>
         </section>
+        <ul class="elements">
+          <li class="elements__element">
+            <img src="./images/element__baikal.jpg" alt="Байкал" class="elements__image">
+            <p class="elements__location">Байкал</p>
+            <button type="button" class="elements__button">
+              <img src="./images/elements__icon.svg" alt="Нравится">
+            </button>
+          </li>
+          <li class="elements__element">
+            <img src="./images/element__kazan.jpg" alt="Казань" class="elements__image">
+            <p class="elements__location">Казань</p>
+            <button type="button" class="elements__button">
+              <img src="./images/elements__icon.svg" alt="Нравится">
+            </button>
+          </li>
+          <li class="elements__element">
+            <img src="./images/element__kareliya.jpg" alt="Карелия" class="elements__image">
+            <p class="elements__location">Карелия</p>
+            <button type="button" class="elements__button">
+              <img src="./images/elements__icon.svg" alt="Нравится">
+            </button>
+          </li>
+          <li class="elements__element">
+            <img src="./images/element__elbrus.jpg" alt="Гора Эльбрус" class="elements__image">
+            <p class="elements__location">Гора Эльбрус</p>
+            <button type="button" class="elements__button">
+              <img src="./images/elements__icon.svg" alt="Нравится">
+            </button>
+          </li>
+          <li class="elements__element">
+            <img src="./images/element__dombai.jpg" alt="Домбай" class="elements__image">
+            <p class="elements__location">Домбай</p>
+            <button type="button" class="elements__button">
+              <img src="./images/elements__icon.svg" alt="Нравится">
+            </button>
+          </li>
+          <li class="elements__element">
+            <img src="./images/element__karachaevsk.jpg" alt="Карачаево-Черкессия" class="elements__image">
+            <p class="elements__location">Карачаево-Черкессия</p>
+            <button type="button" class="elements__button">
+              <img src="./images/elements__icon.svg" alt="Нравится">
+            </button>
+          </li>
+        </ul>
       </main>
       <footer class="footer">
-
+        <p class="footer__copyright">© 2020 Mesto Russia</p>
       </footer>
     </div>
   </div>

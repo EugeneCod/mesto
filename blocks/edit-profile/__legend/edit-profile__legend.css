@@ -1,0 +1,14 @@
+.edit-profile__legend {
+  font-size: 24px;
+  line-height: 1.21;
+  font-weight: 900;
+  margin-bottom: 54px;
+}
+
+@media (max-width: 767px) {
+  .edit-profile__legend {
+    font-size: 18px;
+    margin-bottom: 75px;
+    text-align: center;
+  }
+}

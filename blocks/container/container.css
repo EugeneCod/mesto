@@ -1,3 +1,24 @@
 .container {
   padding: 45px 200px 60px;
+  position: relative;
+}
+
+@media (max-width: 1023px) {
+  .container {
+    padding-left: 100px;
+    padding-right: 100px 
+  }
+}
+
+@media (max-width: 860px) {
+  .container {
+    padding-left: 50px;
+    padding-right: 50px 
+  }
+}
+
+@media (max-width: 767px) {
+  .container {
+    padding: 28px 19px 36px;
+  }
 }

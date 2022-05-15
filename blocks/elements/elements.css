@@ -1,0 +1,15 @@
+.elements {
+  list-style: none;
+  margin: 0;
+  padding: 47px 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(282px, 1fr));
+  color: #000;
+  gap: 20px 17px;
+}
+
+@media (max-width: 767px) {
+  .elements {
+    padding-top: 36px;
+  }
+}

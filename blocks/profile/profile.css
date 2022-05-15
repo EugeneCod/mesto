@@ -10,5 +10,6 @@
   .profile {
     grid-template-columns: 1fr;
     justify-items: center;
+    padding-top: 42px;
   }
 }

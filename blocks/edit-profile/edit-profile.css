@@ -1,12 +1,15 @@
 .edit-profile {
-  max-width: 430px;
+  width: 430px;
   padding: 34px 36px 37px;
   background-color: #fff;
   color: #000;
+  box-sizing: border-box;
+  border-radius: 10px;
 }
 
 @media (max-width: 767px) {
   .edit-profile {
     padding: 25px 22px;
+    width: 282px;
   }
 }

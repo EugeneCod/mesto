@@ -6,6 +6,7 @@
 @import url(../blocks/wrapper/wrapper.css);
 
 @import url(../blocks/container/container.css);
+@import url(../blocks/container/_for/container_for_header.css);
 
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/_opened/popup_opened.css);

@@ -1,5 +1,6 @@
 .container {
-  padding: 45px 200px 60px;
+  padding-left: 200px;
+  padding-right: 200px;
   position: relative;
 }
 
@@ -19,6 +20,7 @@
 
 @media (max-width: 767px) {
   .container {
-    padding: 28px 19px 36px;
+    padding-left: 19px;
+    padding-right: 19px;
   }
 }

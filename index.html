@@ -33,61 +33,58 @@
           </button>
         </section>
         <ul class="elements">
-          <li class="elements__element">
-            <img src="./images/element__baikal.jpg" alt="Байкал" class="elements__image">
-            <p class="elements__location">Байкал</p>
-            <button type="button" class="elements__button-like"></button>
-          </li>
-          <li class="elements__element">
-            <img src="./images/element__kazan.jpg" alt="Казань" class="elements__image">
-            <p class="elements__location">Казань</p>
-            <button type="button" class="elements__button-like"></button>
-          </li>
-          <li class="elements__element">
-            <img src="./images/element__kareliya.jpg" alt="Карелия" class="elements__image">
-            <p class="elements__location">Карелия</p>
-            <button type="button" class="elements__button-like"></button>
-          </li>
-          <li class="elements__element">
-            <img src="./images/element__elbrus.jpg" alt="Гора Эльбрус" class="elements__image">
-            <p class="elements__location">Гора Эльбрус</p>
-            <button type="button" class="elements__button-like"></button>
-          </li>
-          <li class="elements__element">
-            <img src="./images/element__dombai.jpg" alt="Домбай" class="elements__image">
-            <p class="elements__location">Домбай</p>
-            <button type="button" class="elements__button-like"></button>
-          </li>
-          <li class="elements__element">
-            <img src="./images/element__karachaevsk.jpg" alt="Карачаево-Черкессия" class="elements__image">
-            <p class="elements__location">Карачаево-Черкессия</p>
-            <button type="button" class="elements__button-like"></button>
-          </li>
         </ul>
       </main>
       <footer class="footer">
         <p class="footer__copyright">© 2020 Mesto Russia</p>
       </footer>
+      <div class="popup popup_opened">
+        <div class="popup__container">
+          <button type="button" class="popup__close-button">
+            <img src="./images/popup__close-icon.svg" alt="Закрыть" class="popup__close-icon">
+          </button>
+          <form name="editing-form" class="editing-form editing-form_related-to_edit-profile" id="edit-profile" method="get">
+            <fieldset class="editing-form__fieldset" form="edit-profile">
+              <legend class="editing-form__legend">Редактировать профиль
+              </legend>
+              <input type="text" name="name" class="editing-form__input-line editing-form__input-line_assignment_user-name">
+              <input type="text" name="about-self"
+                class="editing-form__input-line editing-form__input-line_assignment_about-self">
+              <button type="submit" class="editing-form__button">Сохранить</button>
+            </fieldset>
+          </form>
+        </div>
+      </div>
       <div class="popup">
         <div class="popup__container">
           <button type="button" class="popup__close-button">
             <img src="./images/popup__close-icon.svg" alt="Закрыть" class="popup__close-icon">
           </button>
-          <form name="edit-profile" class="edit-profile" id="edit-profile" method="get">
-            <fieldset class="edit-profile__fieldset" form="edit-profile">
-              <legend class="edit-profile__legend">Редактировать профиль
+          <form name="add-cards" class="editing-form editing-form_related-to_add-cards" id="add-cards" method="get">
+            <fieldset class="editing-form__fieldset" form="add-cards">
+              <legend class="editing-form__legend">Новое место
               </legend>
-              <input type="text" name="name" id="name"
-                class="edit-profile__input-line edit-profile__input-line_assignment_name">
-              <input type="text" name="about-self" id="about-self"
-                class="edit-profile__input-line edit-profile__input-line_assignment_about-self">
-              <button type="submit" class="edit-profile__button">Сохранить</button>
+              <input type="text" name="location" placeholder="Название"
+                class="editing-form__input-line editing-form__input-line_assignment_location">
+              <input type="text" name="about-self" placeholder="Ссылка на картинку"
+                class="editing-form__input-line editing-form__input-line_assignment_link">
+              <button type="submit" class="editing-form__button">Сохранить</button>
             </fieldset>
           </form>
         </div>
       </div>
     </div>
   </div>
+
+  <template id="card-template">
+    <li class="elements__element">
+      <img src="" alt="" class="elements__image">
+      <p class="elements__location"></p>
+      <button type="button" class="elements__button-like"></button>
+      <button type="button" class="elements__button-delete"></button>
+    </li>
+  </template>
+
   <script src="./scripts/index.js"></script>
 </body>
 

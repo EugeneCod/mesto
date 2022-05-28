@@ -1,4 +1,4 @@
-.edit-profile__input-line {
+.editing-form__input-line {
   font-size: 14px;
   line-height: 1.21;
   font-weight: 400;
@@ -9,12 +9,16 @@
   outline: none;
 }
 
-.edit-profile__input-line:last-of-type {
+.editing-form__input-line::placeholder {
+  color: #C4C4C4;
+}
+
+.editing-form__input-line:last-of-type {
   margin-bottom: 48px;
 }
 
 @media (max-width: 767px) {
-  .edit-profile__input-line:last-of-type {
+  .editing-form__input-line:last-of-type {
     margin-bottom: 45px;
   }
 }

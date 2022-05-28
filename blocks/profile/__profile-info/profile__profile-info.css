@@ -17,6 +17,5 @@
     max-width: initial;
     max-width: 100%;
     grid-template-columns: 18px 1fr 18px;
-    /* grid-template-columns: 1fr minmax(min-content, 200px) 1fr; */
   }
 }

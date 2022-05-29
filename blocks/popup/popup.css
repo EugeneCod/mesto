@@ -8,5 +8,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  display: none;
+  /* display: none; */
+  display: flex;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.2s linear;
+  z-index: 10;
 }

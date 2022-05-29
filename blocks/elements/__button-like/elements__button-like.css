@@ -22,4 +22,5 @@
 
 .elements__button-like:active {
   background-image: url(../../../images/elements__icon-like_active.svg);
+  opacity: 1;
 }

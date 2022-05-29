@@ -73,10 +73,33 @@ function saveAddingCard() {
   };
   const cardElement = cardTemplate.content.cloneNode(true);
   const imageElement = cardElement.querySelector('.elements__image');
+  const location = cardElement.querySelector('.elements__location');
 
   imageElement.setAttribute('src', `${temporalyObject.link}`);
   imageElement.setAttribute('alt', `${temporalyObject.name}`);
-  cardElement.querySelector('.elements__location').textContent = temporalyObject.name;
+  location.textContent = temporalyObject.name;
+
+   // Назначение кнопки "лайка" карточки
+  cardElement.querySelector('.elements__button-like').addEventListener('click', function (evt) {
+    evt.target.classList.toggle('elements__button-like_active');
+  });
+
+  // Назначение кнопки удаления карточки из DOM и смежного объекта из массива
+  cardElement.querySelector('.elements__button-delete').addEventListener('click', function (evt) {
+    const deleteButton = evt.target;
+    const card = deleteButton.closest('.elements__element');
+    
+    card.remove();
+
+    let ObjectIndex = -1;
+    for (let i = 0; i < array.length; i++) {
+      if (array[i].name === location.textContent) {
+        ObjectIndex = i;
+        break;
+      }
+    }
+    array.splice(ObjectIndex, 1);
+  });
 
   cardContainer.prepend(cardElement);
   initialCards.push(temporalyObject);
@@ -87,12 +110,35 @@ function saveAddingCard() {
 
 // Размещение карточек из массива
 function addOriginalCards() {
-  initialCards.forEach(function (element) {
+  initialCards.forEach(function (element, index, array) {
     const cardElement = cardTemplate.content.cloneNode(true);
     const imageElement = cardElement.querySelector('.elements__image');
+    const location = cardElement.querySelector('.elements__location');
     imageElement.setAttribute('src', `${element.link}`);
     imageElement.setAttribute('alt', `${element.name}`);
-    cardElement.querySelector('.elements__location').textContent = element.name;
+    location.textContent = element.name;
+
+    // Назначение кнопки "лайка" карточки
+    cardElement.querySelector('.elements__button-like').addEventListener('click', function (evt) {
+      evt.target.classList.toggle('elements__button-like_active');
+    });
+
+    // Назначение кнопки удаления карточки из DOM и смежного объекта из массива
+    cardElement.querySelector('.elements__button-delete').addEventListener('click', function (evt) {
+      const deleteButton = evt.target;
+      const card = deleteButton.closest('.elements__element');
+      
+      card.remove();
+
+      let ObjectIndex = -1;
+      for (let i = 0; i < array.length; i++) {
+        if (array[i].name === location.textContent) {
+          ObjectIndex = i;
+          break;
+        }
+      }
+      array.splice(ObjectIndex, 1);
+    });
 
     cardContainer.prepend(cardElement);
   }
@@ -131,3 +177,4 @@ formAddCards.addEventListener('submit', (event) => {
   event.preventDefault();
   saveAddingCard();
 });
+

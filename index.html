@@ -38,7 +38,7 @@
       <footer class="footer">
         <p class="footer__copyright">© 2020 Mesto Russia</p>
       </footer>
-      <div class="popup popup_opened">
+      <div class="popup popup_contain_edit-profile ">
         <div class="popup__container">
           <button type="button" class="popup__close-button">
             <img src="./images/popup__close-icon.svg" alt="Закрыть" class="popup__close-icon">
@@ -47,15 +47,15 @@
             <fieldset class="editing-form__fieldset" form="edit-profile">
               <legend class="editing-form__legend">Редактировать профиль
               </legend>
-              <input type="text" name="name" class="editing-form__input-line editing-form__input-line_assignment_user-name">
-              <input type="text" name="about-self"
+              <input type="text" name="name" required class="editing-form__input-line editing-form__input-line_assignment_user-name">
+              <input type="text" name="about-self" required
                 class="editing-form__input-line editing-form__input-line_assignment_about-self">
               <button type="submit" class="editing-form__button">Сохранить</button>
             </fieldset>
           </form>
         </div>
       </div>
-      <div class="popup">
+      <div class="popup popup_contain_add-cards">
         <div class="popup__container">
           <button type="button" class="popup__close-button">
             <img src="./images/popup__close-icon.svg" alt="Закрыть" class="popup__close-icon">
@@ -64,9 +64,9 @@
             <fieldset class="editing-form__fieldset" form="add-cards">
               <legend class="editing-form__legend">Новое место
               </legend>
-              <input type="text" name="location" placeholder="Название"
+              <input type="text" name="location" placeholder="Название" required
                 class="editing-form__input-line editing-form__input-line_assignment_location">
-              <input type="text" name="about-self" placeholder="Ссылка на картинку"
+              <input type="text" name="about-self" placeholder="Ссылка на картинку" required
                 class="editing-form__input-line editing-form__input-line_assignment_link">
               <button type="submit" class="editing-form__button">Сохранить</button>
             </fieldset>

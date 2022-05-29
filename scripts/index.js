@@ -5,6 +5,7 @@ function log(arg) {
 const closePopupButtons = document.querySelectorAll('.popup__close-button');
 const popupEditProfile = document.querySelector('.popup_contain_edit-profile');
 const popupAddCards = document.querySelector('.popup_contain_add-cards');
+const popupImageView =  document.querySelector('.popup_contain_picture');
 const popupIsOpenCLassName = 'popup_opened';
 
 const formEditProfile = document.querySelector('.editing-form_related-to_edit-profile');
@@ -140,6 +141,29 @@ function addOriginalCards() {
       array.splice(ObjectIndex, 1);
     });
 
+     // Назначение открытия попапа для просмотра изображения
+    imageElement.addEventListener('click', function (evt) {
+      const popupContainer = popupImageView.querySelector('.popup__container_contain_picture');
+      const viewImage = imageElement.cloneNode();
+      const viewLocation = location.cloneNode(true);
+      const closeButton = popupContainer.querySelector('.popup__close-button');
+      log(viewLocation);
+      while (!(popupContainer.lastElementChild === closeButton)) {
+        popupContainer.removeChild(popupContainer.lastElementChild);
+      }
+
+      openPopup(popupImageView);
+      popupContainer.insertAdjacentElement('beforeend', viewImage);
+      popupContainer.insertAdjacentElement('beforeend', viewLocation);
+
+      if (viewImage.naturalHeight/ viewImage.naturalWidth < 0.6666666666666667 ) {
+        viewImage.classList.add('elements__image_viewing-mode_horisontal');
+      } else {
+        viewImage.classList.add('elements__image_viewing-mode_vertical');
+      }
+      viewLocation.classList.add('elements__location_viewing-mode')
+    });
+
     cardContainer.prepend(cardElement);
   }
   )
@@ -178,3 +202,13 @@ formAddCards.addEventListener('submit', (event) => {
   saveAddingCard();
 });
 
+/* $('img').each(function(_, img) {
+  var $this = $(this);
+
+  if( $this.height() / $this.width() < 0.6666666666666667 ) {
+      $this.css({
+          height: '100%',
+          maxWidth: 'none'
+      });
+  }
+}); */

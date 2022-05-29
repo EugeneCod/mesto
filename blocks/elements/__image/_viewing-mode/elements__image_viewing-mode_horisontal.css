@@ -1,0 +1,13 @@
+.elements__image_viewing-mode_horisontal {
+  display: block;
+  width: 816px;
+  height: 540px;
+  max-width: 75vw;
+  max-height: 75vh;
+}
+
+@media (max-width: 618px) {
+  .elements__image_viewing-mode_horisontal {
+    height: 299px;
+  }
+}

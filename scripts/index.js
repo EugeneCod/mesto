@@ -44,19 +44,25 @@ const initialCards = [
   }
 ];
 
-// Открытие попапа
-function openPopup(popupElement) {
-  popupElement.classList.add(popupIsOpenCLassName);
-}
+// открыть попап
+const openPopup = popupElement => {popupElement.classList.add(popupIsOpenCLassName);}
 
-// Закрытие попапа
-function closePopup() {
+// закрыть попап
+const closePopup = () => {
   const popupElement = document.querySelector(`.${popupIsOpenCLassName}`);
   popupElement.classList.remove(popupIsOpenCLassName);
 }
 
-// Сохранение изменений профиля
-function saveChangeProfile() {
+// открыть форму редактирования профиля
+const openEditProfileForm = () => {
+  openPopup(popupEditProfile);
+  inputName.value = profileName.textContent;
+  inputAbout.value = profileAbout.textContent;
+}
+
+// обработать отправку формы редактирования профиля
+const handEditProfileSubmit = (evt) => {
+  evt.preventDefault();
   profileName.textContent = inputName.value;
   profileAbout.textContent = inputAbout.value;
   closePopup();
@@ -131,6 +137,12 @@ const addCardListeners = cardElement => {
   cardElement.querySelector('.elements__image').addEventListener('click', viewCardImage);
 }
 
+// открыть форму добавления карточки
+const openAddCardForm = () => {
+  openPopup(popupAddCards);
+  formAddCards.reset();
+}
+
 // обработать отправку формы добавления карточки
 const handleAddCardSubmit = evt => {
   evt.preventDefault();
@@ -147,25 +159,16 @@ const handleAddCardSubmit = evt => {
 // *-------------------Слушатели событий--------------------
 
 // Открытие формы добавления карточек
-openAddCardButton.addEventListener('click', () => {
-  openPopup(popupAddCards);
-});
+openAddCardButton.addEventListener('click', openAddCardForm);
 
 // Отправка формы добавления карточек
 formAddCards.addEventListener('submit', handleAddCardSubmit);
 
 // Открытие формы редактирования профиля
-openEditProfileButton.addEventListener('click', () => {
-  openPopup(popupEditProfile);
-  inputName.value = profileName.textContent;
-  inputAbout.value = profileAbout.textContent;
-});
+openEditProfileButton.addEventListener('click', openEditProfileForm);
 
 // Отправка формы редактирования профиля
-formEditProfile.addEventListener('submit', (event) => {
-  event.preventDefault();
-  saveChangeProfile();
-}); 
+formEditProfile.addEventListener('submit', handEditProfileSubmit); 
 
 
 // *--------------Автоматическое выполнение-----------------

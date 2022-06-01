@@ -112,18 +112,20 @@ const viewCardImage = evt => {
   const cardElement = getCardByEvent(evt);
   const imageElement = cardElement.querySelector('.elements__image');
   const locationELement = cardElement.querySelector('.elements__location');
+  console.log(imageElement);
 
   popupImage.src = imageElement.src;
   popupImage.alt = locationELement.textContent;
   popupImageCaption.textContent = locationELement.textContent;
-  
-  openPopup(popupImageView);
 
+  popupImage.className = 'popup__image';
   if (popupImage.naturalHeight / popupImage.naturalWidth < 0.6666666666666667) {
-    popupImage.classList.add('popup__image_viewing-mode_horisontal');
+    popupImage.classList.add('popup__image_aspect-ratio_horisontal');
   } else {
-    popupImage.classList.add('elements__image_viewing-mode_vertical');
+    popupImage.classList.add('popup__image_aspect-ratio_vertical');
   }
+
+  openPopup(popupImageView);
 };
 
 // добавить обработчики событий карточке

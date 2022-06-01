@@ -1,0 +1,9 @@
+.popup__image_viewing-mode_horisontal {
+  width: 816px;
+}
+
+@media (max-width: 618px) {
+  .popup__image_viewing-mode_horisontal {
+    height: 299px;
+  }
+}

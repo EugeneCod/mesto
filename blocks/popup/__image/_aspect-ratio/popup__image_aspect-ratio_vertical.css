@@ -1,0 +1,9 @@
+.popup__image_viewing-mode_vertical {
+  width: 433px;
+}
+
+@media (max-width: 500px) {
+  .popup__image_viewing-mode_vertical {
+    height: 299px;
+  }
+}

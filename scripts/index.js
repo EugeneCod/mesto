@@ -2,6 +2,9 @@ const closePopupButtons = document.querySelectorAll('.popup__close-button');
 const popupEditProfile = document.querySelector('.popup_contain_edit-profile');
 const popupAddCards = document.querySelector('.popup_contain_add-cards');
 const popupImageView = document.querySelector('.popup_contain_picture');
+const popupConatinerImageView = popupImageView.querySelector('.popup__container_contain_picture');
+const popupImage = popupConatinerImageView.querySelector('.popup__image');
+const popupImageCaption = popupConatinerImageView.querySelector('.popup__image-caption');
 const popupIsOpenCLassName = 'popup_opened';
 
 const formEditProfile = document.querySelector('.editing-form_related-to_edit-profile');
@@ -45,7 +48,7 @@ const initialCards = [
 ];
 
 // открыть попап
-const openPopup = popupElement => {popupElement.classList.add(popupIsOpenCLassName);}
+const openPopup = popupElement => { popupElement.classList.add(popupIsOpenCLassName); }
 
 // закрыть попап
 const closePopup = () => {
@@ -61,7 +64,7 @@ const openEditProfileForm = () => {
 }
 
 // обработать отправку формы редактирования профиля
-const handEditProfileSubmit = (evt) => {
+const handleEditProfileSubmit = (evt) => {
   evt.preventDefault();
   profileName.textContent = inputName.value;
   profileAbout.textContent = inputAbout.value;
@@ -73,14 +76,15 @@ const createCardElement = (location, link) => {
   const cardElement = cardTemplate.content
     .cloneNode(true)
     .querySelector('.elements__element');
+  const elementImage = cardElement.querySelector('.elements__image');
 
-  cardElement.querySelector('.elements__image').setAttribute('src', `${link}`);
-  cardElement.querySelector('.elements__image').setAttribute('alt', `${location}`);
+  elementImage.setAttribute('src', `${link}`);
+  elementImage.setAttribute('alt', `${location}`);
   cardElement.querySelector('.elements__location').textContent = location;
 
   addCardListeners(cardElement);
 
-  return cardElement; 
+  return cardElement;
 };
 
 // добавить карточку в DOM
@@ -105,30 +109,22 @@ const toggleBtnLikeActive = evt => {
 
 // открыть окно просмотра изображения из карточки
 const viewCardImage = evt => {
-  const popupContainer = popupImageView.querySelector('.popup__container_contain_picture');
   const cardElement = getCardByEvent(evt);
   const imageElement = cardElement.querySelector('.elements__image');
   const locationELement = cardElement.querySelector('.elements__location');
-  const viewImage = imageElement.cloneNode();
-  const viewLocation = locationELement.cloneNode(true);
-  const closeButton = popupContainer.querySelector('.popup__close-button');
 
-  while (!(popupContainer.lastElementChild === closeButton)) {
-    popupContainer.removeChild(popupContainer.lastElementChild);
-  }
-
+  popupImage.src = imageElement.src;
+  popupImage.alt = locationELement.textContent;
+  popupImageCaption.textContent = locationELement.textContent;
+  
   openPopup(popupImageView);
 
-  popupContainer.insertAdjacentElement('beforeend', viewImage);
-  popupContainer.insertAdjacentElement('beforeend', viewLocation);
-
-  if (viewImage.naturalHeight / viewImage.naturalWidth < 0.6666666666666667) {
-      viewImage.classList.add('elements__image_viewing-mode_horisontal');
+  if (popupImage.naturalHeight / popupImage.naturalWidth < 0.6666666666666667) {
+    popupImage.classList.add('popup__image_viewing-mode_horisontal');
   } else {
-      viewImage.classList.add('elements__image_viewing-mode_vertical');
+    popupImage.classList.add('elements__image_viewing-mode_vertical');
   }
-  viewLocation.classList.add('elements__location_viewing-mode')
-  };
+};
 
 // добавить обработчики событий карточке
 const addCardListeners = cardElement => {
@@ -146,7 +142,7 @@ const openAddCardForm = () => {
 // обработать отправку формы добавления карточки
 const handleAddCardSubmit = evt => {
   evt.preventDefault();
-  
+
   const location = inputLocation.value;
   const link = inputLinkToTheImage.value;
 
@@ -168,7 +164,7 @@ formAddCards.addEventListener('submit', handleAddCardSubmit);
 openEditProfileButton.addEventListener('click', openEditProfileForm);
 
 // Отправка формы редактирования профиля
-formEditProfile.addEventListener('submit', handEditProfileSubmit); 
+formEditProfile.addEventListener('submit', handleEditProfileSubmit);
 
 
 // *--------------Автоматическое выполнение-----------------

@@ -133,12 +133,13 @@ const addCardListeners = cardElement => {
   cardElement.querySelector('.elements__button-delete').addEventListener('click', deleteCard);
   cardElement.querySelector('.elements__button-like').addEventListener('click', toggleBtnLikeActive);
   cardElement.querySelector('.elements__image').addEventListener('click', viewCardImage);
+  // В дальнейшем рекомендацию 'можно лучше' выполню, пока не хватает на это мозгов
+  // cardImage.addEventListener('click', () => handleCardClick(item));
 }
 
 // открыть форму добавления карточки
 const openAddCardForm = () => {
   openPopup(popupAddCards);
-  formAddCards.reset();
 }
 
 // обработать отправку формы добавления карточки
@@ -173,7 +174,7 @@ formEditProfile.addEventListener('submit', handleEditProfileSubmit);
 
 // Назначение кнопок закрытия попапа
 for (const closePopupButton of closePopupButtons) {
-  closePopupButton.addEventListener('click', () => { closePopup() });
+  closePopupButton.addEventListener('click', closePopup);
 }
 
 // Добавить карточки из массива

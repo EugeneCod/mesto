@@ -112,7 +112,6 @@ const viewCardImage = evt => {
   const cardElement = getCardByEvent(evt);
   const imageElement = cardElement.querySelector('.elements__image');
   const locationELement = cardElement.querySelector('.elements__location');
-  console.log(imageElement);
 
   popupImage.src = imageElement.src;
   popupImage.alt = locationELement.textContent;

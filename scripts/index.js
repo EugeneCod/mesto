@@ -1,4 +1,4 @@
-const closePopupButtons = document.querySelectorAll('.popup__close-button');
+const popups = document.querySelectorAll('.popup');
 const popupEditProfile = document.querySelector('.popup_contain_edit-profile');
 const popupAddCards = document.querySelector('.popup_contain_add-cards');
 const popupImageView = document.querySelector('.popup_contain_picture');
@@ -48,12 +48,16 @@ const initialCards = [
 ];
 
 // открыть попап
-const openPopup = popupElement => { popupElement.classList.add(popupIsOpenCLassName); }
+const openPopup = popupElement => { 
+  popupElement.classList.add(popupIsOpenCLassName); 
+  addEscKeyEvt();
+}
 
 // закрыть попап
 const closePopup = () => {
   const popupElement = document.querySelector(`.${popupIsOpenCLassName}`);
   popupElement.classList.remove(popupIsOpenCLassName);
+  removeEscKeyEvt();
 }
 
 // открыть форму редактирования профиля
@@ -147,28 +151,49 @@ const handleAddCardSubmit = evt => {
   closePopup()
 };
 
+// добавить обработчик нажатия на клавишу 'Escape'
+const addEscKeyEvt = () => {
+  document.addEventListener('keydown', handleEscapeKey);
+}
+
+// удалить обработчик нажатия на клавишу 'Escape'
+const removeEscKeyEvt = () => {
+  document.removeEventListener('keydown', handleEscapeKey);
+}
+
+// обработать нажатие на клавишу 'Escape'
+const handleEscapeKey = evt => {
+  if (evt.key === 'Escape') {
+    closePopup();
+  }
+}
+
 
 // *-------------------Слушатели событий--------------------
 
-// Открытие формы добавления карточек
+// открытие формы добавления карточек
 openAddCardButton.addEventListener('click', openAddCardForm);
 
-// Отправка формы добавления карточек
+// отправка формы добавления карточек
 formAddCards.addEventListener('submit', handleAddCardSubmit);
 
-// Открытие формы редактирования профиля
+// открытие формы редактирования профиля
 openEditProfileButton.addEventListener('click', openEditProfileForm);
 
-// Отправка формы редактирования профиля
+// отправка формы редактирования профиля
 formEditProfile.addEventListener('submit', handleEditProfileSubmit);
 
+// слушатель клика по области всплывающего окна
+for (const popupElement of popups) {
+  popupElement.addEventListener('click', evt => {
+    if ((evt.target === evt.currentTarget)
+      ||(evt.target === popupElement.querySelector('.popup__close-button'))) {
+        closePopup();
+    }
+  });
+}
 
 // *--------------Автоматическое выполнение-----------------
-
-// Назначение кнопок закрытия попапа
-for (const closePopupButton of closePopupButtons) {
-  closePopupButton.addEventListener('click', closePopup);
-}
 
 // Добавить карточки из массива
 initialCards.forEach(elem => {

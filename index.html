@@ -43,13 +43,21 @@
           <button type="button" class="popup__close-button">
             <img src="./images/popup__close-icon.svg" alt="Закрыть" class="popup__close-icon">
           </button>
-          <form name="editing-form" class="editing-form editing-form_related-to_edit-profile" id="edit-profile" method="get">
+          <form novalidate name="editing-form" class="editing-form editing-form_related-to_edit-profile" id="edit-profile"
+            method="get">
             <fieldset class="editing-form__fieldset" form="edit-profile">
               <legend class="editing-form__legend">Редактировать профиль
               </legend>
-              <input type="text" name="name" required class="editing-form__input-line editing-form__input-line_assignment_user-name">
-              <input type="text" name="about-self" required
-                class="editing-form__input-line editing-form__input-line_assignment_about-self">
+              <label class="editing-form__field">
+                <input type="text" name="name" id="name" required minlength="2" maxlength="40"
+                  class="editing-form__input-line editing-form__input-line_assignment_user-name">
+                <span class="editing-form__input-error editing-form__input-error_for_name"></span>
+              </label>
+              <label class="editing-form__field">
+                <input type="text" name="about-self" id="about-self" required minlength="2" maxlength="200"
+                  class="editing-form__input-line editing-form__input-line_assignment_about-self">
+                <span class="editing-form__input-error editing-form__input-error_for_about-self"></span>
+              </label>
               <button type="submit" class="editing-form__button">Сохранить</button>
             </fieldset>
           </form>
@@ -60,15 +68,21 @@
           <button type="button" class="popup__close-button">
             <img src="./images/popup__close-icon.svg" alt="Закрыть" class="popup__close-icon">
           </button>
-          <form name="add-cards" class="editing-form editing-form_related-to_add-cards" id="add-cards" method="get">
+          <form novalidate name="add-cards" class="editing-form editing-form_related-to_add-cards" id="add-cards" method="get">
             <fieldset class="editing-form__fieldset" form="add-cards">
               <legend class="editing-form__legend">Новое место
               </legend>
-              <input type="text" name="location" placeholder="Название" required
+              <label class="editing-form__field">
+              <input type="text" name="location" id="location" placeholder="Название" required minlength="2" maxlength="30"
                 class="editing-form__input-line editing-form__input-line_assignment_location">
-              <input type="text" name="about-self" placeholder="Ссылка на картинку" required
+              <span class="editing-form__input-error editing-form__input-error_for_location"></span>
+              </label>
+              <label class="editing-form__field">
+              <input type="url" name="link" id="link" placeholder="Ссылка на картинку" required
                 class="editing-form__input-line editing-form__input-line_assignment_link">
-              <button type="submit" class="editing-form__button">Сохранить</button>
+              <span class="editing-form__input-error editing-form__input-error_for_link"></span>
+              </label>
+              <button type="submit" class="editing-form__button">Создать</button>
             </fieldset>
           </form>
         </div>
@@ -95,6 +109,7 @@
   </template>
 
   <script src="./scripts/index.js"></script>
+  <script src="./scripts/validate.js"></script>
 </body>
 
 </html>

@@ -26,8 +26,17 @@
 @import url(../blocks/editing-form/_related-to/editing-form_related-to_add-cards.css);
 @import url(../blocks/editing-form/_related-to/editing-form_related-to_edit-profile.css);
 @import url(../blocks/editing-form/__button/editing-form__button.css);
+@import url(../blocks/editing-form/__button/_inactive.css/editing-form__button_inactive.css);
 @import url(../blocks/editing-form/__fieldset/editing-form__fieldset.css);
+@import url(../blocks/editing-form/__field/editing-form__field.css);
+@import url(../blocks/editing-form/__input-error/editing-form__input-error.css);
+@import url(../blocks/editing-form/__input-error/_active/editing-form__input-error_active.css);
+@import url(../blocks/editing-form/__input-error/_for/editing-form__input-error_for_about-self.css);
+@import url(../blocks/editing-form/__input-error/_for/editing-form__input-error_for_name.css);
+@import url(../blocks/editing-form/__input-error/_for/editing-form__input-error_for_link.css);
+@import url(../blocks/editing-form/__input-error/_for/editing-form__input-error_for_location.css);
 @import url(../blocks/editing-form/__input-line/editing-form__input-line.css);
+@import url(../blocks/editing-form/__input-line/_type/editing-form__input-line_type_error.css);
 @import url(../blocks/editing-form/__input-line/_assignment/editing-form__input-line_assignment_about-self.css);
 @import url(../blocks/editing-form/__input-line/_assignment/editing-form__input-line_assignment_link.css);
 @import url(../blocks/editing-form/__input-line/_assignment/editing-form__input-line_assignment_location.css);

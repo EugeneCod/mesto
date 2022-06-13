@@ -82,7 +82,8 @@ const createCardElement = (location, link) => {
   elementImage.setAttribute('alt', `${location}`);
   cardElement.querySelector('.elements__location').textContent = location;
 
-  addCardListeners(cardElement);
+  addCardButtonsListeners(cardElement);
+  elementImage.addEventListener('click', () => handleImageClick(link, location));
 
   return cardElement;
 };
@@ -108,14 +109,10 @@ const toggleBtnLikeActive = evt => {
 };
 
 // открыть окно просмотра изображения из карточки
-const viewCardImage = evt => {
-  const cardElement = getCardByEvent(evt);
-  const imageElement = cardElement.querySelector('.elements__image');
-  const locationELement = cardElement.querySelector('.elements__location');
-
-  popupImage.src = imageElement.src;
-  popupImage.alt = locationELement.textContent;
-  popupImageCaption.textContent = locationELement.textContent;
+const handleImageClick = (link, location) => {
+  popupImage.src = link;
+  popupImage.alt = location;
+  popupImageCaption.textContent = location;
 
   popupImage.className = 'popup__image';
   if (popupImage.naturalHeight / popupImage.naturalWidth < 0.6666666666666667) {
@@ -127,13 +124,10 @@ const viewCardImage = evt => {
   openPopup(popupImageView);
 };
 
-// добавить обработчики событий карточке
-const addCardListeners = cardElement => {
+// добавить обработчики событий кнопкам карточки
+const addCardButtonsListeners = cardElement => {
   cardElement.querySelector('.elements__button-delete').addEventListener('click', deleteCard);
   cardElement.querySelector('.elements__button-like').addEventListener('click', toggleBtnLikeActive);
-  cardElement.querySelector('.elements__image').addEventListener('click', viewCardImage);
-  // В дальнейшем рекомендацию 'можно лучше' выполню, пока не хватает на это мозгов
-  // cardImage.addEventListener('click', () => handleCardClick(item));
 }
 
 // открыть форму добавления карточки

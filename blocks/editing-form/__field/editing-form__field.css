@@ -1,16 +1,14 @@
 .editing-form__field {
-  position: relative;
   display: flex;
   flex-direction: column;
-  margin-bottom: 32px;
 }
 
 .editing-form__field:last-of-type {
-  margin-bottom: 48px;
+  margin-bottom: 13px;
 }
 
 @media (max-width: 767px) {
   .editing-form__field:last-of-type {
-    margin-bottom: 45px;
+  margin-bottom: 11px;
   }
 }

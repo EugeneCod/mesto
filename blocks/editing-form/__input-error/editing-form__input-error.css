@@ -4,8 +4,9 @@
   font-weight: 400;
   color: red;
   opacity: 0;
-  position: absolute;
   top: 32px;
   left: 0;
   transition: opacity .4s;
+  min-height: 29px;
+  max-height: 44px;
 }

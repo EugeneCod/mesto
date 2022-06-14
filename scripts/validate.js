@@ -1,3 +1,35 @@
+const settings = {
+  formSelector: '.editing-form',
+  fieldSetSelector: '.editing-form__fieldset',
+  inputSelector: '.editing-form__input-line',
+  errorSelector: '.editing-form__input-error',
+  submitButtonSelector: '.editing-form__button',
+  inputErrorClass: 'editing-form__input-line_type_error',
+  errorClass: 'editing-form__input-error_active',
+  inactiveButtonClass: 'editing-form__button_inactive',
+}
+
+// сброс валидации в форме
+const resetValidation = (formElement) => {
+  const inputList = (formElement.querySelectorAll(settings.inputSelector));
+  const errorList = (formElement.querySelectorAll(settings.errorSelector));
+  const buttonElement = (formElement.querySelector(settings.submitButtonSelector));
+  for (const inputElement of inputList) {
+    if (inputElement.classList.contains(settings.inputErrorClass)) {
+      inputElement.classList.remove(settings.inputErrorClass);
+    }
+  }
+  for (const errorElement of errorList) {
+    if (errorElement.classList.contains(settings.errorClass)) {
+      errorElement.classList.remove(settings.errorClass);
+    }
+  }
+  if (buttonElement.classList.contains(settings.inactiveButtonClass)) {
+    buttonElement.classList.remove(settings.inactiveButtonClass);
+    buttonElement.disabled = false;
+  }
+}
+
 // показать ошибку
 const showInputError = (formElement, inputElement, errorMessage, settings) => {
   const errorElement = formElement.querySelector(`.editing-form__input-error_for_${inputElement.id}`);
@@ -69,12 +101,4 @@ const enableValidation = (settings) => {
   });
 };
 
-enableValidation({
-  formSelector: '.editing-form',
-  fieldSetSelector: '.editing-form__fieldset',
-  inputSelector: '.editing-form__input-line',
-  submitButtonSelector: '.editing-form__button',
-  inactiveButtonClass: 'editing-form__button_inactive',
-  inputErrorClass: 'editing-form__input-line_type_error',
-  errorClass: 'editing-form__input-error_active',
-});
+enableValidation(settings);

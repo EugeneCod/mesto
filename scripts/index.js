@@ -47,27 +47,6 @@ const initialCards = [
   }
 ];
 
-// сброс валидации в форме
-const resetValidation = (formElement) => {
-  const inputList = (formElement.querySelectorAll('.editing-form__input-line'));
-  const errorList = (formElement.querySelectorAll('.editing-form__input-error'));
-  const buttonElement = (formElement.querySelector('.editing-form__button'));
-  for (const inputElement of inputList) {
-    if (inputElement.classList.contains('editing-form__input-line_type_error')) {
-      inputElement.classList.remove('editing-form__input-line_type_error');
-    }
-  }
-  for (const errorElement of errorList) {
-    if (errorElement.classList.contains('editing-form__input-error_active')) {
-      errorElement.classList.remove('editing-form__input-error_active');
-    }
-  }
-  if (buttonElement.classList.contains('editing-form__button_inactive')) {
-    buttonElement.classList.remove('editing-form__button_inactive');
-    buttonElement.disabled = false;
-  }
-}
-
 // открыть попап
 const openPopup = popupElement => { 
   popupElement.classList.add(popupIsOpenCLassName); 

@@ -146,8 +146,11 @@ const handleAddCardSubmit = evt => {
 
   const location = inputLocation.value;
   const link = inputLinkToTheImage.value;
+  const buttonSubmit = formAddCards.querySelector('.editing-form__button');
 
   addCard(location, link);
+  buttonSubmit.classList.add('editing-form__button_inactive');
+  buttonSubmit.disabled = true;
   formAddCards.reset();
   closePopup()
 };

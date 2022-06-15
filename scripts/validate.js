@@ -3,6 +3,7 @@ const settings = {
   fieldSetSelector: '.editing-form__fieldset',
   inputSelector: '.editing-form__input-line',
   errorSelector: '.editing-form__input-error',
+  spanErrorSelector: '.editing-form__input-error_for_',
   submitButtonSelector: '.editing-form__button',
   inputErrorClass: 'editing-form__input-line_type_error',
   errorClass: 'editing-form__input-error_active',
@@ -32,7 +33,7 @@ const resetValidation = (formElement) => {
 
 // показать ошибку
 const showInputError = (formElement, inputElement, errorMessage, settings) => {
-  const errorElement = formElement.querySelector(`.editing-form__input-error_for_${inputElement.id}`);
+  const errorElement = formElement.querySelector(`${settings.spanErrorSelector}${inputElement.id}`);
   inputElement.classList.add(settings.inputErrorClass);
   errorElement.textContent = errorMessage;
   errorElement.classList.add(settings.errorClass);
@@ -40,7 +41,7 @@ const showInputError = (formElement, inputElement, errorMessage, settings) => {
 
 // скрыть ошибку
 const hideInputError = (formElement, inputElement, settings) => {
-  const errorElement = formElement.querySelector(`.editing-form__input-error_for_${inputElement.id}`);
+  const errorElement = formElement.querySelector(`${settings.spanErrorSelector}${inputElement.id}`);
   inputElement.classList.remove(settings.inputErrorClass);
   errorElement.classList.remove(settings.errorClass);
   errorElement.textContent = '';

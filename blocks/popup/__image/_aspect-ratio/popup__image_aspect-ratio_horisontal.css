@@ -1,9 +1,0 @@
-.popup__image_aspect-ratio_horisontal {
-  width: 816px;
-}
-
-@media (max-width: 618px) {
-  .popup__image_aspect-ratio_horisontal {
-    height: 299px;
-  }
-}

@@ -1,9 +1,0 @@
-.popup__image_aspect-ratio_vertical {
-  width: 433px;
-}
-
-@media (max-width: 500px) {
-  .popup__image_aspect-ratio_vertical {
-    height: 299px;
-  }
-}

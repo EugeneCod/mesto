@@ -19,8 +19,6 @@
 @import url(../blocks/popup/__container/_contain/popup__container_contain_picture.css);
 @import url(../blocks/popup/__image-caption/popup__image-caption.css);
 @import url(../blocks/popup/__image/popup__image.css);
-@import url(../blocks/popup/__image/_aspect-ratio/popup__image_aspect-ratio_horisontal.css);
-@import url(../blocks/popup/__image/_aspect-ratio/popup__image_aspect-ratio_vertical.css);
 
 @import url(../blocks/editing-form/editing-form.css);
 @import url(../blocks/editing-form/_related-to/editing-form_related-to_add-cards.css);

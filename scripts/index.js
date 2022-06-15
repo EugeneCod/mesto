@@ -92,14 +92,6 @@ const handleImageClick = (link, location) => {
   popupImage.src = link;
   popupImage.alt = location;
   popupImageCaption.textContent = location;
-
-  popupImage.className = 'popup__image';
-  if (popupImage.naturalHeight / popupImage.naturalWidth < 0.6666666666666667) {
-    popupImage.classList.add('popup__image_aspect-ratio_horisontal');
-  } else {
-    popupImage.classList.add('popup__image_aspect-ratio_vertical');
-  }
-
   openPopup(popupImageView);
 };
 

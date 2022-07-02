@@ -44,7 +44,7 @@ export class Card {
     });
 
     this._element.querySelector('.elements__button-like').addEventListener('click', (evt) => {
-      this._handleDeleteCard(evt);
+      this._handleBtnLike(evt);
     });
   }
 

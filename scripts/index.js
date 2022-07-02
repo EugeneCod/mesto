@@ -1,5 +1,6 @@
 import {initialCards} from './modules/cards.js';
 import {Card} from './modules/Card.js';
+import {FormValidator} from './modules/FormValidator.js';
 
 const popups = document.querySelectorAll('.popup');
 const popupEditProfile = document.querySelector('.popup_contain_edit-profile');
@@ -109,6 +110,47 @@ const renderElements = () => {
   });
 };
 
+// включить влидацию для всех форм
+const startVallidation = () => {
+  const formElements = Array.from(document.querySelectorAll('.editing-form'));
+  formElements.forEach ((formElement) => {
+    const data = {
+      formSelector: '.editing-form',
+      fieldSetSelector: '.editing-form__fieldset',
+      inputSelector: '.editing-form__input-line',
+      errorSelector: '.editing-form__input-error',
+      spanErrorSelector: '.editing-form__input-error_for_',
+      submitButtonSelector: '.editing-form__button',
+      inputErrorClass: 'editing-form__input-line_type_error',
+      errorClass: 'editing-form__input-error_active',
+      inactiveButtonClass: 'editing-form__button_inactive',
+    }
+    const formValidator = new FormValidator(data, formElement)
+    formValidator.enableValidation();
+  })
+}
+
+// сброс валидации в форме
+const resetValidation = (formElement) => {
+  const inputList = formElement.querySelectorAll('.editing-form__input-line');
+  const errorList = formElement.querySelectorAll('.editing-form__input-error');
+  const buttonElement = formElement.querySelector('.editing-form__button');
+  for (const inputElement of inputList) {
+    if (inputElement.classList.contains('editing-form__input-line_type_error')) {
+      inputElement.classList.remove('editing-form__input-line_type_error');
+    }
+  }
+  for (const errorElement of errorList) {
+    if (errorElement.classList.contains('editing-form__input-error_active')) {
+      errorElement.classList.remove('editing-form__input-error_active');
+    }
+  }
+  if (buttonElement.classList.contains('editing-form__button_inactive')) {
+    buttonElement.classList.remove('editing-form__button_inactive');
+    buttonElement.disabled = false;
+  }
+}
+
 // *-------------------Слушатели событий--------------------
 
 // открытие формы добавления карточек
@@ -134,3 +176,4 @@ for (const popupElement of popups) {
 }
 
 renderElements();
+startVallidation();

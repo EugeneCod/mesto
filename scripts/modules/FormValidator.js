@@ -1,5 +1,5 @@
 export class FormValidator {
-  constructor (data, formElement) {
+  constructor(data, formElement) {
     this._formElement = formElement
     this._fieldSetSelector = data.fieldSetSelector
     this._inputSelector = data.inputSelector
@@ -28,7 +28,7 @@ export class FormValidator {
   };
 
   // проверить валидность поля ввода
-  _checkInputValidity (formElement, inputElement) {
+  _checkInputValidity(formElement, inputElement) {
     if (!inputElement.validity.valid) {
       this._showInputError(formElement, inputElement, inputElement.validationMessage);
     } else {
@@ -37,14 +37,14 @@ export class FormValidator {
   };
 
   // проверить валидность массива полей ввода
-  _hasInvalidInput (inputList) {
+  _hasInvalidInput(inputList) {
     return inputList.some(inputElement => {
       return !inputElement.validity.valid;
     });
   }
 
   // активация и дезактивация кнопки отправки формы
-  _toggleButtonState (inputList, buttonElement) {
+  _toggleButtonState(inputList, buttonElement) {
     if (this._hasInvalidInput(inputList)) {
       buttonElement.classList.add(this._inactiveButtonClass);
       buttonElement.disabled = true;
@@ -55,7 +55,7 @@ export class FormValidator {
   }
 
   // добавить слушатели ввода
-  _setEventListeners (formElement) {
+  _setEventListeners(formElement) {
     const inputList = Array.from(formElement.querySelectorAll(this._inputSelector));
     const buttonElement = formElement.querySelector(this._submitButtonSelector);
     this._toggleButtonState(inputList, buttonElement);
@@ -77,5 +77,5 @@ export class FormValidator {
     } else {
       this._setEventListeners(this._formElement);
     }
-  } 
+  }
 }

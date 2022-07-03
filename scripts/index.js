@@ -7,6 +7,10 @@ const popupEditProfile = document.querySelector('.popup_contain_edit-profile');
 const popupAddCards = document.querySelector('.popup_contain_add-cards');
 const popupIsOpenClassName = 'popup_opened';
 
+const popupImageView = document.querySelector('.popup_contain_picture');
+const popupImage = popupImageView.querySelector('.popup__image');
+const popupImageCaption = popupImageView.querySelector('.popup__image-caption');
+
 const formEditProfile = document.querySelector('.editing-form_related-to_edit-profile');
 const openEditProfileButton = document.querySelector('.profile__edit-button');
 const profileName = document.querySelector('.profile__name');
@@ -92,7 +96,7 @@ const handleEscapeKey = evt => {
 
 // подготовить карточку из класса Card
 const prepareCard = (data) => {
-  const card = new Card(data, cardTemplateSelector)
+  const card = new Card(data, cardTemplateSelector, handleCardClick)
   const cardElement = card.generateCard();
 
   return cardElement;
@@ -109,6 +113,14 @@ const renderElements = () => {
     addCard(prepareCard(item));
   });
 };
+
+// обработать клик по картинке в карточке
+const handleCardClick = (name, link) => {
+  popupImage.src = link;
+  popupImage.alt = name;
+  popupImageCaption.textContent = name;
+  openPopup(popupImageView);
+}
 
 // включить влидацию для всех форм
 const startVallidation = () => {

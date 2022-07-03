@@ -1,12 +1,10 @@
-const popupImageView = document.querySelector('.popup_contain_picture');
-const popupImage = popupImageView.querySelector('.popup__image');
-const popupImageCaption = popupImageView.querySelector('.popup__image-caption');
 
 export class Card {
-  constructor(data, cardSelector) {
-    this._image = data.link;
-    this._location = data.name;
+  constructor(data, cardSelector, handleCardClick) {
+    this._link = data.link;
+    this._name = data.name;
     this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -19,13 +17,6 @@ export class Card {
     return cardElement;
   }
 
-  _handleOpenPopup() {
-    popupImage.src = this._image;
-    popupImage.alt = this._location;
-    popupImageCaption.textContent = this._location;
-    popupImageView.classList.add('popup_opened');
-  }
-
   _handleDeleteCard() {
     this._element.remove();
   }
@@ -36,7 +27,7 @@ export class Card {
 
   _setEventListeners() {
     this._element.querySelector('.elements__image').addEventListener('click', () => {
-      this._handleOpenPopup();
+      this._handleCardClick(this._name, this._link);
     });
 
     this._element.querySelector('.elements__button-delete').addEventListener('click', () => {
@@ -53,11 +44,11 @@ export class Card {
     this._setEventListeners();
 
     const elementImage = this._element.querySelector('.elements__image');
-    const elementLocation = this._element.querySelector('.elements__location');
+    const elementName = this._element.querySelector('.elements__location');
 
-    elementImage.src = this._image;
-    elementImage.alt = this._location;
-    elementLocation.textContent = this._location;
+    elementImage.src = this._link;
+    elementImage.alt = this._name;
+    elementName.textContent = this._name;
 
     return this._element;
   }

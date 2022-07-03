@@ -1,6 +1,6 @@
-import {initialCards} from './modules/cards.js';
-import {Card} from './modules/Card.js';
-import {FormValidator} from './modules/FormValidator.js';
+import { initialCards } from './modules/cards.js';
+import { Card } from './modules/Card.js';
+import { FormValidator } from './modules/FormValidator.js';
 
 const popups = document.querySelectorAll('.popup');
 const popupEditProfile = document.querySelector('.popup_contain_edit-profile');
@@ -24,8 +24,8 @@ const inputLocation = document.querySelector('.editing-form__input-line_assignme
 const inputLinkToTheImage = document.querySelector('.editing-form__input-line_assignment_link');
 
 // открыть попап
-const openPopup = popupElement => { 
-  popupElement.classList.add(popupIsOpenClassName); 
+const openPopup = popupElement => {
+  popupElement.classList.add(popupIsOpenClassName);
   addEscKeyEvt();
 }
 
@@ -113,7 +113,7 @@ const renderElements = () => {
 // включить влидацию для всех форм
 const startVallidation = () => {
   const formElements = Array.from(document.querySelectorAll('.editing-form'));
-  formElements.forEach ((formElement) => {
+  formElements.forEach((formElement) => {
     const data = {
       formSelector: '.editing-form',
       fieldSetSelector: '.editing-form__fieldset',
@@ -169,8 +169,8 @@ formEditProfile.addEventListener('submit', handleEditProfileSubmit);
 for (const popupElement of popups) {
   popupElement.addEventListener('click', evt => {
     if ((evt.target === evt.currentTarget)
-      ||(evt.target === popupElement.querySelector('.popup__close-button'))) {
-        closePopup();
+      || (evt.target === popupElement.querySelector('.popup__close-button'))) {
+      closePopup();
     }
   });
 }

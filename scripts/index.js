@@ -2,16 +2,29 @@ import { initialCards } from './modules/cards.js';
 import { Card } from './modules/Card.js';
 import { FormValidator } from './modules/FormValidator.js';
 
+const config = {
+  formSelector: '.editing-form',
+  inputSelector: '.editing-form__input-line',
+  errorSelector: '.editing-form__input-error',
+  spanErrorSelector: '.editing-form__input-error_for_',
+  submitButtonSelector: '.editing-form__button',
+  inputErrorClass: 'editing-form__input-line_type_error',
+  errorClass: 'editing-form__input-error_active',
+  inactiveButtonClass: 'editing-form__button_inactive',
+}
+
+const formValidators = {}
+
 const popups = document.querySelectorAll('.popup');
+const popupIsOpenClassName = 'popup_opened';
 const popupEditProfile = document.querySelector('.popup_contain_edit-profile');
 const popupAddCards = document.querySelector('.popup_contain_add-cards');
-const popupIsOpenClassName = 'popup_opened';
-
 const popupImageView = document.querySelector('.popup_contain_picture');
 const popupImage = popupImageView.querySelector('.popup__image');
 const popupImageCaption = popupImageView.querySelector('.popup__image-caption');
 
 const formEditProfile = document.querySelector('.editing-form_related-to_edit-profile');
+const formEditProfileName = formEditProfile.getAttribute('name');
 const openEditProfileButton = document.querySelector('.profile__edit-button');
 const profileName = document.querySelector('.profile__name');
 const profileAbout = document.querySelector('.profile__about-self');
@@ -19,9 +32,9 @@ const inputName = document.querySelector('.editing-form__input-line_assignment_u
 const inputAbout = document.querySelector('.editing-form__input-line_assignment_about-self');
 
 const formAddCards = document.querySelector('.editing-form_related-to_add-cards');
-const AddCardsButtonSubmit = formAddCards.querySelector('.editing-form__button');
-
+const formAddCardsName = formAddCards.getAttribute('name');
 const openAddCardButton = document.querySelector('.profile__add-button');
+
 const cardTemplateSelector = '#card-template';
 const cardContainer = document.querySelector('.elements');
 const inputLocation = document.querySelector('.editing-form__input-line_assignment_location');
@@ -30,22 +43,21 @@ const inputLinkToTheImage = document.querySelector('.editing-form__input-line_as
 // открыть попап
 const openPopup = popupElement => {
   popupElement.classList.add(popupIsOpenClassName);
-  addEscKeyEvt();
+  addEscKeyEvt(popupElement);
 }
 
 // закрыть попап
-const closePopup = () => {
-  const popupElement = document.querySelector(`.${popupIsOpenClassName}`);
+const closePopup = popupElement => {
   popupElement.classList.remove(popupIsOpenClassName);
   removeEscKeyEvt();
 }
 
 // открыть форму редактирования профиля
 const openEditProfileForm = () => {
-  resetValidation(formEditProfile);
   openPopup(popupEditProfile);
   inputName.value = profileName.textContent;
   inputAbout.value = profileAbout.textContent;
+  formValidators[formEditProfileName].resetValidation();
 }
 
 // обработать отправку формы редактирования профиля
@@ -53,11 +65,12 @@ const handleEditProfileSubmit = (evt) => {
   evt.preventDefault();
   profileName.textContent = inputName.value;
   profileAbout.textContent = inputAbout.value;
-  closePopup();
+  closePopup(popupEditProfile);
 }
 
 // открыть форму добавления карточки
 const openAddCardForm = () => {
+  formValidators[formAddCardsName].resetValidation();
   openPopup(popupAddCards);
 }
 
@@ -69,12 +82,10 @@ const handleAddCardSubmit = evt => {
     name: inputLocation.value,
     link: inputLinkToTheImage.value
   }
-
-  AddCardsButtonSubmit.classList.add('editing-form__button_inactive');
-  AddCardsButtonSubmit.disabled = true;
+  
   formAddCards.reset();
   addCard(prepareCard(data));
-  closePopup()
+  closePopup(popupAddCards)
 };
 
 // добавить обработчик нажатия на клавишу 'Escape'
@@ -90,7 +101,8 @@ const removeEscKeyEvt = () => {
 // обработать нажатие на клавишу 'Escape'
 const handleEscapeKey = evt => {
   if (evt.key === 'Escape') {
-    closePopup();
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
   }
 }
 
@@ -123,44 +135,17 @@ const handleCardClick = (name, link) => {
 }
 
 // включить влидацию для всех форм
-const startVallidation = () => {
-  const formElements = Array.from(document.querySelectorAll('.editing-form'));
-  formElements.forEach((formElement) => {
-    const data = {
-      formSelector: '.editing-form',
-      fieldSetSelector: '.editing-form__fieldset',
-      inputSelector: '.editing-form__input-line',
-      errorSelector: '.editing-form__input-error',
-      spanErrorSelector: '.editing-form__input-error_for_',
-      submitButtonSelector: '.editing-form__button',
-      inputErrorClass: 'editing-form__input-line_type_error',
-      errorClass: 'editing-form__input-error_active',
-      inactiveButtonClass: 'editing-form__button_inactive',
-    }
-    const formValidator = new FormValidator(data, formElement)
-    formValidator.enableValidation();
-  })
-}
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector))
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(config, formElement)
+    // получаем данные из атрибута `name` у формы
+    const formName = formElement.getAttribute('name');
 
-// сброс валидации в форме
-const resetValidation = (formElement) => {
-  const inputList = formElement.querySelectorAll('.editing-form__input-line');
-  const errorList = formElement.querySelectorAll('.editing-form__input-error');
-  const buttonElement = formElement.querySelector('.editing-form__button');
-  for (const inputElement of inputList) {
-    if (inputElement.classList.contains('editing-form__input-line_type_error')) {
-      inputElement.classList.remove('editing-form__input-line_type_error');
-    }
-  }
-  for (const errorElement of errorList) {
-    if (errorElement.classList.contains('editing-form__input-error_active')) {
-      errorElement.classList.remove('editing-form__input-error_active');
-    }
-  }
-  if (buttonElement.classList.contains('editing-form__button_inactive')) {
-    buttonElement.classList.remove('editing-form__button_inactive');
-    buttonElement.disabled = false;
-  }
+    // вот тут в объект записываем под именем формы
+    formValidators[formName] = validator;
+  validator.enableValidation();
+  });
 }
 
 // *-------------------Слушатели событий--------------------
@@ -182,10 +167,10 @@ for (const popupElement of popups) {
   popupElement.addEventListener('click', evt => {
     if ((evt.target === evt.currentTarget)
       || (evt.target === popupElement.querySelector('.popup__close-button'))) {
-      closePopup();
+      closePopup(popupElement);
     }
   });
 }
 
 renderElements();
-startVallidation();
+enableValidation(config);

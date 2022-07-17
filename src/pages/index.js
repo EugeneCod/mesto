@@ -1,6 +1,9 @@
-import { initialCards } from './modules/cards.js';
-import { Card } from './modules/Card.js';
-import { FormValidator } from './modules/FormValidator.js';
+import Card from '../scripts/components/Card.js';
+import FormValidator from '../scripts/components/FormValidator.js';
+
+import {
+  initialCards,
+} from '../scripts/utils/constants.js';
 
 const config = {
   formSelector: '.editing-form',

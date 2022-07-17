@@ -30,6 +30,12 @@ export const cardContainerSelector = '.elements';
 export const popupImageSelector = '.popup__image';
 export const popupImageCaptionSelector = '.popup__image-caption';
 export const popupWithImageSelector = '.popup_contain_picture';
+export const popupEditProfileSelector = '.popup_contain_edit-profile';
+export const popupAddCardsSelector = '.popup_contain_add-cards';
+export const formSelector = '.editing-form';
+export const InputSelector = '.editing-form__input-line';
+
+
 
 
 /* export const filterButtons = [

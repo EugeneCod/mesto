@@ -1,4 +1,5 @@
 import PopupWithImage from '../scripts/components/PopupWithImage.js';
+import PopupWithForm from '../scripts/components/PopupWithForm.js';
 import Card from '../scripts/components/Card.js';
 import Section from '../scripts/components/Section.js';
 import FormValidator from '../scripts/components/FormValidator.js';
@@ -8,11 +9,26 @@ import {
   cardTemplateSelector,
   cardContainerSelector,
   popupWithImageSelector,
+  popupEditProfileSelector,
+  popupAddCardsSelector,
 } from '../scripts/utils/constants.js';
 
 
 const popupWithImage = new PopupWithImage (popupWithImageSelector);
 popupWithImage.setEventListeners();
+
+const popupWithFormEditProfile = new PopupWithForm (
+  popupEditProfileSelector,
+  function handleFormSubmit(evt) {
+    evt.preventDefault();
+    // profileName.textContent = inputName.value;
+    // profileAbout.textContent = inputAbout.value;
+    // closePopup(popupEditProfile);
+});
+popupWithFormEditProfile.setEventListeners();
+
+const popupWithFormAddCards = new PopupWithForm (popupAddCardsSelector);
+popupWithFormAddCards.setEventListeners();
 
 const handleCardClick = (name, link) => {
   popupWithImage.open(name, link);
@@ -27,7 +43,27 @@ const cardList = new Section({
   }
 },cardContainerSelector);
 
+
+
+
 cardList.renderItems();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 const config = {
@@ -45,13 +81,13 @@ const formValidators = {}
 
 
 // const popupIsOpenClassName = 'popup_opened';
-const popupEditProfile = document.querySelector('.popup_contain_edit-profile');
-const popupAddCards = document.querySelector('.popup_contain_add-cards');
+// const popupEditProfile = document.querySelector('.popup_contain_edit-profile');
+// const popupAddCards = document.querySelector('.popup_contain_add-cards');
 
 // const popupImage = popupImageView.querySelector('.popup__image');
 // const popupImageCaption = popupImageView.querySelector('.popup__image-caption');
 const popups = document.querySelectorAll('.popup');
-const formEditProfile = document.querySelector('.editing-form_related-to_edit-profile');
+// const formEditProfile = document.querySelector('.editing-form_related-to_edit-profile');
 const formEditProfileName = formEditProfile.getAttribute('name');
 const openEditProfileButton = document.querySelector('.profile__edit-button');
 const profileName = document.querySelector('.profile__name');
@@ -89,12 +125,12 @@ const openEditProfileForm = () => {
 }
 
 // обработать отправку формы редактирования профиля
-const handleEditProfileSubmit = (evt) => {
+/* const handleEditProfileSubmit = (evt) => {
   evt.preventDefault();
   profileName.textContent = inputName.value;
   profileAbout.textContent = inputAbout.value;
   closePopup(popupEditProfile);
-}
+} */
 
 // открыть форму добавления карточки
 const openAddCardForm = () => {

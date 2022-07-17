@@ -35,8 +35,10 @@ export const popupAddCardsSelector = '.popup_contain_add-cards';
 export const formSelector = '.editing-form';
 export const InputSelector = '.editing-form__input-line';
 
-
-
+export const profileSelectors = {
+  nameSelector: '.profile__name',
+  aboutSelfSelector: '.profile__about-self'
+}
 
 /* export const filterButtons = [
   {

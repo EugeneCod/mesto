@@ -1,3 +1,4 @@
+import PopupWithImage from '../scripts/components/PopupWithImage.js';
 import Card from '../scripts/components/Card.js';
 import Section from '../scripts/components/Section.js';
 import FormValidator from '../scripts/components/FormValidator.js';
@@ -6,13 +7,15 @@ import {
   initialCards,
   cardTemplateSelector,
   cardContainerSelector,
+  popupWithImageSelector,
 } from '../scripts/utils/constants.js';
 
+
+const popupWithImage = new PopupWithImage (popupWithImageSelector);
+popupWithImage.setEventListeners();
+
 const handleCardClick = (name, link) => {
-  popupImage.src = link;
-  popupImage.alt = name;
-  popupImageCaption.textContent = name;
-  openPopup(popupImageView);
+  popupWithImage.open(name, link);
 }
 
 const cardList = new Section({
@@ -40,14 +43,14 @@ const config = {
 
 const formValidators = {}
 
-const popups = document.querySelectorAll('.popup');
+
 // const popupIsOpenClassName = 'popup_opened';
 const popupEditProfile = document.querySelector('.popup_contain_edit-profile');
 const popupAddCards = document.querySelector('.popup_contain_add-cards');
-const popupImageView = document.querySelector('.popup_contain_picture');
-const popupImage = popupImageView.querySelector('.popup__image');
-const popupImageCaption = popupImageView.querySelector('.popup__image-caption');
 
+// const popupImage = popupImageView.querySelector('.popup__image');
+// const popupImageCaption = popupImageView.querySelector('.popup__image-caption');
+const popups = document.querySelectorAll('.popup');
 const formEditProfile = document.querySelector('.editing-form_related-to_edit-profile');
 const formEditProfileName = formEditProfile.getAttribute('name');
 const openEditProfileButton = document.querySelector('.profile__edit-button');
@@ -188,14 +191,14 @@ openEditProfileButton.addEventListener('click', openEditProfileForm);
 formEditProfile.addEventListener('submit', handleEditProfileSubmit);
 
 // слушатель клика по области всплывающего окна
-for (const popupElement of popups) {
+/* for (const popupElement of popups) {
   popupElement.addEventListener('click', evt => {
     if ((evt.target === evt.currentTarget)
       || (evt.target === popupElement.querySelector('.popup__close-button'))) {
       closePopup(popupElement);
     }
   });
-}
+} */
 
 // renderElements();
 enableValidation(config);

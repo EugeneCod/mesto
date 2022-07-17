@@ -5,11 +5,11 @@ export default class Popup {
   }
 
   open() {
-    this.popupElement.classList.add(popupOpenClass);
+    this.popupElement.classList.add(this.popupOpenClass);
   }
 
   close() {
-    this.popupElement.classList.remove(popupOpenClass);
+    this.popupElement.classList.remove(this.popupOpenClass);
   }
 
   setEventListeners() {

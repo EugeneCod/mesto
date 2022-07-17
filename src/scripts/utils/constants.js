@@ -27,6 +27,10 @@ export  const initialCards = [
 
 export const cardTemplateSelector = '#card-template';
 export const cardContainerSelector = '.elements';
+export const popupImageSelector = '.popup__image';
+export const popupImageCaptionSelector = '.popup__image-caption';
+export const popupWithImageSelector = '.popup_contain_picture';
+
 
 /* export const filterButtons = [
   {

@@ -1,9 +1,31 @@
 import Card from '../scripts/components/Card.js';
+import Section from '../scripts/components/Section.js';
 import FormValidator from '../scripts/components/FormValidator.js';
 
 import {
   initialCards,
+  cardTemplateSelector,
+  cardContainerSelector,
 } from '../scripts/utils/constants.js';
+
+const handleCardClick = (name, link) => {
+  popupImage.src = link;
+  popupImage.alt = name;
+  popupImageCaption.textContent = name;
+  openPopup(popupImageView);
+}
+
+const cardList = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const card = new Card (item, cardTemplateSelector, handleCardClick);
+    const cardElement = card.generateCard();
+    cardList.addItem(cardElement);
+  }
+},cardContainerSelector);
+
+cardList.renderItems();
+
 
 const config = {
   formSelector: '.editing-form',
@@ -38,8 +60,8 @@ const formAddCards = document.querySelector('.editing-form_related-to_add-cards'
 const formAddCardsName = formAddCards.getAttribute('name');
 const openAddCardButton = document.querySelector('.profile__add-button');
 
-const cardTemplateSelector = '#card-template';
-const cardContainer = document.querySelector('.elements');
+
+
 const inputLocation = document.querySelector('.editing-form__input-line_assignment_location');
 const inputLinkToTheImage = document.querySelector('.editing-form__input-line_assignment_link');
 
@@ -110,17 +132,17 @@ const handleEscapeKey = evt => {
 }
 
 // подготовить карточку из класса Card
-const prepareCard = (data) => {
+/* const prepareCard = (data) => {
   const card = new Card(data, cardTemplateSelector, handleCardClick)
   const cardElement = card.generateCard();
 
   return cardElement;
-}
+} */
 
 // добавить карточку в DOM
-const addCard = (cardElement) => {
+/* const addCard = (cardElement) => {
   cardContainer.prepend(cardElement);
-};
+}; */
 
 // Отобразить карточки из массива
 const renderElements = () => {
@@ -130,12 +152,12 @@ const renderElements = () => {
 };
 
 // обработать клик по картинке в карточке
-const handleCardClick = (name, link) => {
+/* const handleCardClick = (name, link) => {
   popupImage.src = link;
   popupImage.alt = name;
   popupImageCaption.textContent = name;
   openPopup(popupImageView);
-}
+} */
 
 // включить влидацию для всех форм
 const enableValidation = (config) => {
@@ -175,5 +197,5 @@ for (const popupElement of popups) {
   });
 }
 
-renderElements();
+// renderElements();
 enableValidation(config);

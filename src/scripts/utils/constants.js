@@ -25,7 +25,8 @@ export  const initialCards = [
   }
 ];
 
-
+export const cardTemplateSelector = '#card-template';
+export const cardContainerSelector = '.elements';
 
 /* export const filterButtons = [
   {

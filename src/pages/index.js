@@ -41,7 +41,7 @@ const config = {
 const formValidators = {}
 
 const popups = document.querySelectorAll('.popup');
-const popupIsOpenClassName = 'popup_opened';
+// const popupIsOpenClassName = 'popup_opened';
 const popupEditProfile = document.querySelector('.popup_contain_edit-profile');
 const popupAddCards = document.querySelector('.popup_contain_add-cards');
 const popupImageView = document.querySelector('.popup_contain_picture');
@@ -66,16 +66,16 @@ const inputLocation = document.querySelector('.editing-form__input-line_assignme
 const inputLinkToTheImage = document.querySelector('.editing-form__input-line_assignment_link');
 
 // открыть попап
-const openPopup = popupElement => {
+/* const openPopup = popupElement => {
   popupElement.classList.add(popupIsOpenClassName);
   addEscKeyEvt(popupElement);
-}
+} */
 
 // закрыть попап
-const closePopup = popupElement => {
+/* const closePopup = popupElement => {
   popupElement.classList.remove(popupIsOpenClassName);
   removeEscKeyEvt();
-}
+} */
 
 // открыть форму редактирования профиля
 const openEditProfileForm = () => {
@@ -145,11 +145,11 @@ const handleEscapeKey = evt => {
 }; */
 
 // Отобразить карточки из массива
-const renderElements = () => {
+/* const renderElements = () => {
   initialCards.forEach((item) => {
     addCard(prepareCard(item));
   });
-};
+}; */
 
 // обработать клик по картинке в карточке
 /* const handleCardClick = (name, link) => {

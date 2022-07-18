@@ -1,27 +1,41 @@
-import { formSelector } from '../utils/constants.js';
+import { formSelector, InputSelector } from '../utils/constants.js';
 import Popup from './Popup.js';
 
 export default class PopupWithForm extends Popup {
-  constructor(popupSelector, handleFormSubmit) {
-    super(popupSelector);
+  constructor({popupSelector, handleFormSubmit}) {
+    super({popupSelector});
     this._handleFormSubmit = handleFormSubmit;
-    this._formElement = this.popupElement.querySelector(formSelector);
-    this._inputList = Array.from(this.formElement.querySelectorAll(InputSelector));
+    this._formElement = this._popupElement.querySelector(formSelector);
+    this._inputList = Array.from(this._formElement.querySelectorAll(InputSelector));
+    
   }
 
   _getInputValues() {
     this._inputValues = {};
     this._inputList.forEach((inputElement) => {
-      const inputValue = inputElement.textContent;
-      const inputName = inputElement.getAttribute('name');
-      this.inputValues[inputName] = inputValue;
+      const inputValue = inputElement.value;
+      const inputName = inputElement.name;
+      this._inputValues[inputName] = inputValue;
     })
-    return this.inputValues;
+    return this._inputValues;
   }
+
+/*   _getInputValues() {
+    this._inputList = this._element.querySelectorAll('.form__input');
+    
+    this._formValues = {};
+    this._inputList.forEach(input => this._formValues[input.name] = input.value);
+    
+    return this._formValues;
+  } */
 
   setEventListeners() {
     super.setEventListeners();
-    this.formElement.addEventListener('submit', this.handleFormSubmit.bind(this, evt));
+    this._formElement.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+      this._handleFormSubmit(this._getInputValues());
+      this.close();
+    });
   }
 
   close() {
@@ -29,15 +43,3 @@ export default class PopupWithForm extends Popup {
     this._formElement.reset();
   }
 }
-
-
-/* Создайте класс PopupWithForm, который наследует от Popup. Этот класс:
-Кроме селектора попапа принимает в конструктор колбэк сабмита формы.
-
-Содержит приватный метод _getInputValues, который собирает данные всех полей формы.
-
-Перезаписывает родительский метод setEventListeners. Метод setEventListeners класса PopupWithForm должен не только добавлять обработчик клика иконке закрытия, но и добавлять обработчик сабмита формы.
-
-Перезаписывает родительский метод close, так как при закрытии попапа форма должна ещё и сбрасываться.
-
-Для каждого попапа создавайте свой экземпляр класса PopupWithForm. */

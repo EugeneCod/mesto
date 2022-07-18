@@ -25,6 +25,11 @@ export  const initialCards = [
   }
 ];
 
+export const openEditProfileButton = document.querySelector('.profile__edit-button');
+export const inputName = document.querySelector('.editing-form__input-line_assignment_user-name');
+export const inputAboutSelf = document.querySelector('.editing-form__input-line_assignment_about-self');
+export const openAddCardButton = document.querySelector('.profile__add-button');
+
 export const cardTemplateSelector = '#card-template';
 export const cardContainerSelector = '.elements';
 export const popupImageSelector = '.popup__image';

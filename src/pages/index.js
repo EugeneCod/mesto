@@ -6,6 +6,10 @@ import Section from '../scripts/components/Section.js';
 import FormValidator from '../scripts/components/FormValidator.js';
 
 import {
+  openEditProfileButton,
+  openAddCardButton,
+  inputName,
+  inputAboutSelf,
   initialCards,
   cardTemplateSelector,
   cardContainerSelector,
@@ -18,21 +22,24 @@ import {
 
 const userInfo = new UserInfo(profileSelectors);
 
-const popupWithImage = new PopupWithImage(popupWithImageSelector);
+const popupWithImage = new PopupWithImage({popupSelector: popupWithImageSelector});
 popupWithImage.setEventListeners();
 
-const popupWithFormEditProfile = new PopupWithForm(
-  popupEditProfileSelector,
-  function handleFormSubmit(evt) {
-    evt.preventDefault();
-    // profileName.textContent = inputName.value;
-    // profileAbout.textContent = inputAbout.value;
-    // closePopup(popupEditProfile);
-  });
-
+const popupWithFormEditProfile = new PopupWithForm({
+  popupSelector: popupEditProfileSelector,
+  handleFormSubmit: (formData) => {
+    userInfo.setUserInfo(formData);
+  }});
 popupWithFormEditProfile.setEventListeners();
 
-const popupWithFormAddCards = new PopupWithForm(popupAddCardsSelector);
+const popupWithFormAddCards = new PopupWithForm({
+  popupSelector: popupAddCardsSelector,
+  handleFormSubmit: (formData) => {
+    console.log(formData);
+    const card = new Card(formData, cardTemplateSelector, handleCardClick);
+    const cardElement = card.generateCard();
+    cardList.addItem(cardElement);
+  }});
 popupWithFormAddCards.setEventListeners();
 
 const handleCardClick = (name, link) => {
@@ -49,11 +56,22 @@ const cardList = new Section({
 }, cardContainerSelector);
 
 
+// открытие формы редактирования профиля
+openEditProfileButton.addEventListener('click', () => {
+  const data = userInfo.getUserInfo();
+  inputName.value = data.name;
+  inputAboutSelf.value = data.aboutSelf;
+  popupWithFormEditProfile.open()
+  // formValidators['editingForm'].resetValidation();
+});
 
+// открытие формы добавления карточек
+openAddCardButton.addEventListener('click', () => {
+  popupWithFormAddCards.open()
+  // formValidators['addCards'].resetValidation();
+});
 
 cardList.renderItems();
-
-
 
 
 
@@ -84,17 +102,17 @@ const config = {
 
 const formValidators = {}
 
-
+const formEditProfile = document.querySelector('.editing-form_related-to_edit-profile')
 const formEditProfileName = formEditProfile.getAttribute('name');
-const openEditProfileButton = document.querySelector('.profile__edit-button');
+
 // const profileName = document.querySelector('.profile__name');
 // const profileAbout = document.querySelector('.profile__about-self');
-const inputName = document.querySelector('.editing-form__input-line_assignment_user-name');
-const inputAbout = document.querySelector('.editing-form__input-line_assignment_about-self');
+/* const inputName = document.querySelector('.editing-form__input-line_assignment_user-name');
+const inputAboutSelf = document.querySelector('.editing-form__input-line_assignment_about-self'); */
 
 const formAddCards = document.querySelector('.editing-form_related-to_add-cards');
 const formAddCardsName = formAddCards.getAttribute('name');
-const openAddCardButton = document.querySelector('.profile__add-button');
+
 
 
 
@@ -114,12 +132,12 @@ const inputLinkToTheImage = document.querySelector('.editing-form__input-line_as
 } */
 
 // открыть форму редактирования профиля
-const openEditProfileForm = () => {
+/* const openEditProfileForm = () => {
   openPopup(popupEditProfile);
   inputName.value = profileName.textContent;
   inputAbout.value = profileAbout.textContent;
   formValidators[formEditProfileName].resetValidation();
-}
+} */
 
 // обработать отправку формы редактирования профиля
 /* const handleEditProfileSubmit = (evt) => {
@@ -129,11 +147,7 @@ const openEditProfileForm = () => {
   closePopup(popupEditProfile);
 } */
 
-// открыть форму добавления карточки
-const openAddCardForm = () => {
-  formValidators[formAddCardsName].resetValidation();
-  openPopup(popupAddCards);
-}
+
 
 // обработать отправку формы добавления карточки
 const handleAddCardSubmit = evt => {
@@ -150,22 +164,22 @@ const handleAddCardSubmit = evt => {
 };
 
 // добавить обработчик нажатия на клавишу 'Escape'
-const addEscKeyEvt = () => {
+/* const addEscKeyEvt = () => {
   document.addEventListener('keydown', handleEscapeKey);
-}
+} */
 
 // удалить обработчик нажатия на клавишу 'Escape'
-const removeEscKeyEvt = () => {
+/* const removeEscKeyEvt = () => {
   document.removeEventListener('keydown', handleEscapeKey);
-}
+} */
 
 // обработать нажатие на клавишу 'Escape'
-const handleEscapeKey = evt => {
+/* const handleEscapeKey = evt => {
   if (evt.key === 'Escape') {
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
   }
-}
+} */
 
 // подготовить карточку из класса Card
 /* const prepareCard = (data) => {
@@ -200,10 +214,8 @@ const enableValidation = (config) => {
   const formList = Array.from(document.querySelectorAll(config.formSelector))
   formList.forEach((formElement) => {
     const validator = new FormValidator(config, formElement)
-    // получаем данные из атрибута `name` у формы
     const formName = formElement.getAttribute('name');
 
-    // вот тут в объект записываем под именем формы
     formValidators[formName] = validator;
     validator.enableValidation();
   });
@@ -211,17 +223,15 @@ const enableValidation = (config) => {
 
 // *-------------------Слушатели событий--------------------
 
-// открытие формы добавления карточек
-openAddCardButton.addEventListener('click', openAddCardForm);
+
 
 // отправка формы добавления карточек
-formAddCards.addEventListener('submit', handleAddCardSubmit);
+// formAddCards.addEventListener('submit', handleAddCardSubmit);
 
-// открытие формы редактирования профиля
-openEditProfileButton.addEventListener('click', openEditProfileForm);
+
 
 // отправка формы редактирования профиля
-formEditProfile.addEventListener('submit', handleEditProfileSubmit);
+// formEditProfile.addEventListener('submit', handleEditProfileSubmit);
 
 // слушатель клика по области всплывающего окна
 /* for (const popupElement of popups) {
@@ -234,4 +244,4 @@ formEditProfile.addEventListener('submit', handleEditProfileSubmit);
 } */
 
 // renderElements();
-enableValidation(config);
+// enableValidation(config);

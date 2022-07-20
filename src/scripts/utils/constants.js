@@ -45,6 +45,17 @@ export const profileSelectors = {
   aboutSelfSelector: '.profile__about-self'
 }
 
+export const configValidation = {
+  formSelector: '.editing-form',
+  inputSelector: '.editing-form__input-line',
+  errorSelector: '.editing-form__input-error',
+  spanErrorSelector: '.editing-form__input-error_for_',
+  submitButtonSelector: '.editing-form__button',
+  inputErrorClass: 'editing-form__input-line_type_error',
+  errorClass: 'editing-form__input-error_active',
+  inactiveButtonClass: 'editing-form__button_inactive',
+}
+
 /* export const filterButtons = [
   {
     buttonClass: 'filter__button_type_grid',

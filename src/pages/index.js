@@ -41,8 +41,7 @@ const popupWithFormEditProfile = new PopupWithForm({
 const popupWithFormAddCards = new PopupWithForm({
   popupSelector: popupAddCardsSelector,
   handleFormSubmit: (formData) => {
-    const card = new Card(formData, cardTemplateSelector, handleCardClick);
-    const cardElement = card.generateCard();
+    const cardElement = createCard(formData);
     cardList.addItem(cardElement);
   }
 });
@@ -51,11 +50,17 @@ const popupWithFormAddCards = new PopupWithForm({
 const cardList = new Section({
   items: initialCards,
   renderer: (item) => {
-    const card = new Card(item, cardTemplateSelector, handleCardClick);
-    const cardElement = card.generateCard();
+    const cardElement = createCard(item);
     cardList.addItem(cardElement);
   }
 }, cardContainerSelector);
+
+// вернуть экземпляр карточки
+const createCard = (item) => {
+  const card = new Card(item, cardTemplateSelector, handleCardClick);
+  const cardElement = card.generateCard();
+  return cardElement;
+}
 
 // обработать клик по изображению карточки
 const handleCardClick = (name, link) => {

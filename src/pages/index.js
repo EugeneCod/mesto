@@ -9,8 +9,6 @@ import FormValidator from '../scripts/components/FormValidator.js';
 import {
   openEditProfileButton,
   openAddCardButton,
-  inputName,
-  inputAboutSelf,
   initialCards,
   configValidation,
   cardTemplateSelector,
@@ -84,9 +82,8 @@ const enableValidation = (config) => {
 // открытие формы редактирования профиля
 openEditProfileButton.addEventListener('click', () => {
   const data = userInfo.getUserInfo();
-  inputName.value = data.name;
-  inputAboutSelf.value = data.aboutSelf;
-  popupWithFormEditProfile.open()
+  popupWithFormEditProfile.setinputValues(data);
+  popupWithFormEditProfile.open();
   formValidators['editingForm'].resetValidation();
 });
 

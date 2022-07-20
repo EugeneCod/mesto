@@ -26,8 +26,6 @@ export  const initialCards = [
 ];
 
 export const openEditProfileButton = document.querySelector('.profile__edit-button');
-export const inputName = document.querySelector('.editing-form__input-line_assignment_user-name');
-export const inputAboutSelf = document.querySelector('.editing-form__input-line_assignment_about-self');
 export const openAddCardButton = document.querySelector('.profile__add-button');
 
 export const cardTemplateSelector = '#card-template';
@@ -55,25 +53,3 @@ export const configValidation = {
   errorClass: 'editing-form__input-error_active',
   inactiveButtonClass: 'editing-form__button_inactive',
 }
-
-/* export const filterButtons = [
-  {
-    buttonClass: 'filter__button_type_grid',
-    isGrid: true
-  },
-  {
-    buttonClass: 'filter__button_type_column',
-    isGrid: false
-  }
-];
-
-export const cardListSelector = '.card-list__items';
-export const filterListSelector = '.filter';
-export const filterButtonTemplate = '.filter-button';
-export const cardList = document.querySelector('.card-list__items');
-export const popupElement = document.querySelector('.popup');
-export const popupCloseButton = document.querySelector('.popup__close');
-export const popupImage = document.querySelector('.popup__image');
-export const popupCaption = document.querySelector('.popup__caption');
-export const defaultCardButton = document.querySelector('.filter__button_type_grid');
-export const horizontalCardButton = document.querySelector('.filter__button_type_column'); */

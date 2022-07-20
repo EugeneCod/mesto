@@ -26,14 +26,15 @@ const formValidators = {}
 const userInfo = new UserInfo(profileSelectors);
 
 // экз. класса окна просмотра изображения карточки
-const popupWithImage = new PopupWithImage({popupSelector: popupWithImageSelector});
+const popupWithImage = new PopupWithImage({ popupSelector: popupWithImageSelector });
 
 // экз. класса окна с формой редактирования профиля
 const popupWithFormEditProfile = new PopupWithForm({
   popupSelector: popupEditProfileSelector,
   handleFormSubmit: (formData) => {
     userInfo.setUserInfo(formData);
-  }});
+  }
+});
 
 // экз. класса окна с формой добавления карточек
 const popupWithFormAddCards = new PopupWithForm({
@@ -42,7 +43,8 @@ const popupWithFormAddCards = new PopupWithForm({
     const card = new Card(formData, cardTemplateSelector, handleCardClick);
     const cardElement = card.generateCard();
     cardList.addItem(cardElement);
-  }});
+  }
+});
 
 // экз. класса Section для отрисовки карточек
 const cardList = new Section({

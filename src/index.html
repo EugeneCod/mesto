@@ -4,7 +4,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./pages/index.css">
   <title>Mesto Russia</title>
 </head>
 
@@ -13,23 +12,23 @@
     <div class="container container_for_header">
       <header class="header">
         <a href="#" class="header__logo">
-          <img src="./images/header__logo.svg" alt="Логотип" class="header__logo-image">
+          <img src="<%=require('./images/header__logo.svg')%>" alt="Логотип" class="header__logo-image">
         </a>
       </header>
     </div>
     <div class="container">
       <main class="content">
         <section class="profile" aria-label="Информация о пользователе">
-          <img src="./images/profile__image.jpg" alt="Аватар" class="profile__image">
+          <img src="<%=require('./images/profile__image.jpg')%>" alt="Аватар" class="profile__image">
           <div class="profile__profile-info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <p class="profile__about-self">Исследователь океана</p>
             <button type="button" class="profile__edit-button">
-              <img src="./images/profile__edit-icon.svg" alt="Редактировать профиль" class="profile__edit-icon">
+              <img src="<%=require('./images/profile__edit-icon.svg')%>" alt="Редактировать профиль" class="profile__edit-icon">
             </button>
           </div>
           <button type="button" class="profile__add-button">
-            <img src="./images/profile__add-icon.svg" alt="Добавить изображение" class="profile__add-icon">
+            <img src="<%=require('./images/profile__add-icon.svg')%>" alt="Добавить изображение" class="profile__add-icon">
           </button>
         </section>
         <ul class="elements">
@@ -41,7 +40,7 @@
       <div class="popup popup_contain_edit-profile ">
         <div class="popup__container">
           <button type="button" class="popup__close-button">
-            <img src="./images/popup__close-icon.svg" alt="Закрыть" class="popup__close-icon">
+            <img src="<%=require('./images/popup__close-icon.svg')%>" alt="Закрыть" class="popup__close-icon">
           </button>
           <form novalidate name="editingForm" class="editing-form editing-form_related-to_edit-profile"
             id="edit-profile" method="get">
@@ -66,7 +65,7 @@
       <div class="popup popup_contain_add-cards">
         <div class="popup__container">
           <button type="button" class="popup__close-button">
-            <img src="./images/popup__close-icon.svg" alt="Закрыть" class="popup__close-icon">
+            <img src="<%=require('./images/popup__close-icon.svg')%>" alt="Закрыть" class="popup__close-icon">
           </button>
           <form novalidate name="addCards" class="editing-form editing-form_related-to_add-cards" id="add-cards"
             method="get">
@@ -91,7 +90,7 @@
       <div class="popup popup_contain_picture">
         <div class="popup__container popup__container_contain_picture">
           <button type="button" class="popup__close-button">
-            <img src="./images/popup__close-icon.svg" alt="Закрыть" class="popup__close-icon">
+            <img src="<%=require('./images/popup__close-icon.svg')%>" alt="Закрыть" class="popup__close-icon">
           </button>
           <img src="#" alt="" class="popup__image">
           <p class="popup__image-caption"></p>
@@ -109,7 +108,6 @@
     </li>
   </template>
 
-  <script type="module" src="./pages/index.js"></script>
 </body>
 
 </html>

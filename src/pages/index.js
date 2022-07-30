@@ -39,16 +39,29 @@ const popupWithFormEditProfile = new PopupWithForm({
 const popupWithFormAddCards = new PopupWithForm({
   popupSelector: popupAddCardsSelector,
   handleFormSubmit: (formData) => {
-    cardList.renderItem(formData);
+    fetch('https://mesto.nomoreparties.co/v1/cohort-47/cards', {
+      method: 'POST',
+      headers: {
+        authorization: 'fecf0c0a-0938-47a0-bc3a-dfac6e5ffd59',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: formData.name,
+        link: formData.link
+      })
+    })
+    .then(response => response.json())
+    .then(data => cardList.renderItem(data, 'prepend'))
+    // cardList.renderItem(formData, 'prepend')
   }
 });
 
 // экз. класса Section для отрисовки карточек
 const cardList = new Section({
-  renderer: (item) => {
+  renderer: (item, method) => {
     const card = new Card(item, cardTemplateSelector, handleCardClick);
     const cardElement = card.generateCard();
-    cardList.addItem(cardElement);
+    cardList.addItem(cardElement, method);
   }
 }, cardContainerSelector);
 
@@ -94,7 +107,7 @@ const renderCards = () => {
     .then(res => res.json())
     .then((result) => {
       console.log(result);
-      cardList.renderItems(result);
+      cardList.renderItems(result, 'append');
     });
 }
 

@@ -1,8 +1,8 @@
 .elements__element {
   background-color: #fff;
   display: grid;
-  grid-template-columns: 75% 25%;
-  padding-bottom: 25px;
+  /* grid-template-columns: 75% 25%; */
+  grid-template-columns: 1fr 44px;
   border-radius: 10px;
   overflow: hidden;
   position: relative;

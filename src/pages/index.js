@@ -9,7 +9,7 @@ import FormValidator from '../scripts/components/FormValidator.js';
 import {
   openEditProfileButton,
   openAddCardButton,
-  initialCards,
+  // initialCards,
   configValidation,
   cardTemplateSelector,
   cardContainerSelector,
@@ -18,6 +18,18 @@ import {
   popupAddCardsSelector,
   profileSelectors,
 } from '../scripts/utils/constants.js';
+
+fetch('https://mesto.nomoreparties.co/v1/cohort-47/users/me', {
+  headers: {
+    authorization: 'fecf0c0a-0938-47a0-bc3a-dfac6e5ffd59'
+  }
+})
+  .then(res => res.json())
+  .then((result) => {
+    console.log(result);
+  }); 
+
+
 
 const formValidators = {}
 
@@ -45,7 +57,6 @@ const popupWithFormAddCards = new PopupWithForm({
 
 // экз. класса Section для отрисовки карточек
 const cardList = new Section({
-  items: initialCards,
   renderer: (item) => {
     const card = new Card(item, cardTemplateSelector, handleCardClick);
     const cardElement = card.generateCard();
@@ -87,8 +98,19 @@ openAddCardButton.addEventListener('click', () => {
 });
 
 
-cardList.renderItems();
+// cardList.renderItems();
 popupWithImage.setEventListeners();
 popupWithFormEditProfile.setEventListeners();
 popupWithFormAddCards.setEventListeners();
 enableValidation(configValidation);
+
+fetch('https://mesto.nomoreparties.co/v1/cohort-47/cards', {
+  headers: {
+    authorization: 'fecf0c0a-0938-47a0-bc3a-dfac6e5ffd59'
+  }
+})
+  .then(res => res.json())
+  .then((result) => {
+    console.log(result)
+    cardList.renderItems(result);
+  });

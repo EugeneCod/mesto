@@ -1,4 +1,4 @@
-export  const initialCards = [
+/* export  const initialCards = [
   {
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -23,7 +23,7 @@ export  const initialCards = [
     name: 'Байкал',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
-];
+]; */
 
 export const openEditProfileButton = document.querySelector('.profile__edit-button');
 export const openAddCardButton = document.querySelector('.profile__add-button');
@@ -40,7 +40,8 @@ export const InputSelector = '.editing-form__input-line';
 
 export const profileSelectors = {
   nameSelector: '.profile__name',
-  aboutSelfSelector: '.profile__about-self'
+  aboutSelfSelector: '.profile__about-self',
+  profileImageSelector: '.profile__image'
 }
 
 export const configValidation = {

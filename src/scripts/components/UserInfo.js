@@ -17,7 +17,39 @@ export default class UserInfo {
     this.about.textContent = data.about;
   }
 
-  setAvatar(data) {
+  setUserAvatar(data) {
     this.profileImage.src = data.avatar;
   }
+
+  updateUserInfo(data) {
+    fetch('https://mesto.nomoreparties.co/v1/cohort-47/users/me', {
+      method: 'PATCH',
+      headers: {
+        authorization: 'fecf0c0a-0938-47a0-bc3a-dfac6e5ffd59',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: data.name,
+        about: data.about
+      })
+    })
+    .then(response => response.json())
+    .then(data => this.setUserInfo(data))
+  }
+  
+  updateUserAvatar(data) {
+    fetch('https://mesto.nomoreparties.co/v1/cohort-47/users/me', {
+      method: 'PATCH',
+      headers: {
+        authorization: 'fecf0c0a-0938-47a0-bc3a-dfac6e5ffd59',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        avatar: data.avatar
+      })
+    })
+    .then(response => response.json())
+    .then(data => this.setUserAvatar(data))
+  }
 }
+

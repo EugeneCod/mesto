@@ -31,7 +31,7 @@ const popupWithImage = new PopupWithImage({ popupSelector: popupWithImageSelecto
 const popupWithFormEditProfile = new PopupWithForm({
   popupSelector: popupEditProfileSelector,
   handleFormSubmit: (formData) => {
-    userInfo.setUserInfo(formData);
+    userInfo.updateUserInfo(formData);
   }
 });
 
@@ -69,6 +69,35 @@ const enableValidation = (config) => {
   });
 }
 
+// загрузить и отобразить данные профиля
+const renderUserInfo = () => {
+  fetch('https://mesto.nomoreparties.co/v1/cohort-47/users/me', {
+    headers: {
+      authorization: 'fecf0c0a-0938-47a0-bc3a-dfac6e5ffd59'
+    }
+  })
+    .then(res => res.json())
+    .then((result) => {
+      console.log(result);
+      userInfo.setUserInfo(result);
+      userInfo.setUserAvatar(result);
+    }); 
+}
+  
+// загрузить и отобразить карточки
+const renderCards = () => {
+  fetch('https://mesto.nomoreparties.co/v1/cohort-47/cards', {
+    headers: {
+      authorization: 'fecf0c0a-0938-47a0-bc3a-dfac6e5ffd59'
+    }
+  })
+    .then(res => res.json())
+    .then((result) => {
+      console.log(result);
+      cardList.renderItems(result);
+    });
+}
+
 // *-------------------Слушатели событий--------------------
 
 // открытие формы редактирования профиля
@@ -92,27 +121,19 @@ popupWithFormEditProfile.setEventListeners();
 popupWithFormAddCards.setEventListeners();
 enableValidation(configValidation);
 
-fetch('https://mesto.nomoreparties.co/v1/cohort-47/users/me', {
-  headers: {
-    authorization: 'fecf0c0a-0938-47a0-bc3a-dfac6e5ffd59'
-  }
-})
-  .then(res => res.json())
-  .then((result) => {
-    console.log(result);
-    userInfo.setUserInfo(result);
-    userInfo.setAvatar(result);
-  }); 
-  
+renderUserInfo();
+renderCards();
 
-fetch('https://mesto.nomoreparties.co/v1/cohort-47/cards', {
-  headers: {
-    authorization: 'fecf0c0a-0938-47a0-bc3a-dfac6e5ffd59'
-  }
-})
-  .then(res => res.json())
-  .then((result) => {
-    console.log(result);
-    cardList.renderItems(result);
-  });
-
+// fetch('https://mesto.nomoreparties.co/v1/cohort-47/users/me', {
+//       method: 'PATCH',
+//       headers: {
+//         authorization: 'fecf0c0a-0938-47a0-bc3a-dfac6e5ffd59',
+//         'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify({
+//         name: 'Jacques',
+//         about: 'Sailor'
+//       })
+//     })
+//     .then(response => response.json())
+//     .then(data => console.log(data))

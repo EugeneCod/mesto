@@ -19,18 +19,6 @@ import {
   profileSelectors,
 } from '../scripts/utils/constants.js';
 
-fetch('https://mesto.nomoreparties.co/v1/cohort-47/users/me', {
-  headers: {
-    authorization: 'fecf0c0a-0938-47a0-bc3a-dfac6e5ffd59'
-  }
-})
-  .then(res => res.json())
-  .then((result) => {
-    console.log(result);
-  }); 
-
-
-
 const formValidators = {}
 
 // экз. класса информацции профиля
@@ -104,6 +92,19 @@ popupWithFormEditProfile.setEventListeners();
 popupWithFormAddCards.setEventListeners();
 enableValidation(configValidation);
 
+fetch('https://mesto.nomoreparties.co/v1/cohort-47/users/me', {
+  headers: {
+    authorization: 'fecf0c0a-0938-47a0-bc3a-dfac6e5ffd59'
+  }
+})
+  .then(res => res.json())
+  .then((result) => {
+    console.log(result);
+    userInfo.setUserInfo(result);
+    userInfo.setAvatar(result);
+  }); 
+  
+
 fetch('https://mesto.nomoreparties.co/v1/cohort-47/cards', {
   headers: {
     authorization: 'fecf0c0a-0938-47a0-bc3a-dfac6e5ffd59'
@@ -111,6 +112,7 @@ fetch('https://mesto.nomoreparties.co/v1/cohort-47/cards', {
 })
   .then(res => res.json())
   .then((result) => {
-    console.log(result)
+    console.log(result);
     cardList.renderItems(result);
   });
+

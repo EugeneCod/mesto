@@ -2,6 +2,7 @@ import './index.css'
 import UserInfo from '../scripts/components/UserInfo.js';
 import PopupWithImage from '../scripts/components/PopupWithImage.js';
 import PopupWithForm from '../scripts/components/PopupWithForm.js';
+import PopupWithConfirm from '../scripts/components/PopupWIthConfirm.js'
 import Card from '../scripts/components/Card.js';
 import Section from '../scripts/components/Section.js';
 import FormValidator from '../scripts/components/FormValidator.js';
@@ -9,13 +10,14 @@ import FormValidator from '../scripts/components/FormValidator.js';
 import {
   openEditProfileButton,
   openAddCardButton,
-  // initialCards,
   configValidation,
   cardTemplateSelector,
+  cardTemplateSelectorWidthoutDel,
   cardContainerSelector,
   popupWithImageSelector,
   popupEditProfileSelector,
   popupAddCardsSelector,
+  popupWithConfirmSelector,
   profileSelectors,
 } from '../scripts/utils/constants.js';
 
@@ -56,10 +58,24 @@ const popupWithFormAddCards = new PopupWithForm({
   }
 });
 
+// экз. класса окна с подтвержением удаления
+const popupWithConfirmDel = new PopupWithConfirm({
+  popupSelector: popupWithConfirmSelector,
+  handleFormSubmit: (id) => {
+    _handleDeleteCard()
+  }
+});
+
 // экз. класса Section для отрисовки карточек
 const cardList = new Section({
   renderer: (item, method) => {
-    const card = new Card(item, cardTemplateSelector, handleCardClick);
+    let templateSelector;
+    if(item.owner._id === userInfo.getUserId()) {
+      templateSelector = cardTemplateSelector;
+    } else {
+      templateSelector = cardTemplateSelectorWidthoutDel;
+    }
+    const card = new Card(item, templateSelector, handleCardClick);
     const cardElement = card.generateCard();
     cardList.addItem(cardElement, method);
   }
@@ -68,6 +84,10 @@ const cardList = new Section({
 // обработать клик по изображению карточки
 const handleCardClick = (name, link) => {
   popupWithImage.open(name, link);
+}
+
+const handleDeleteCard = (id) => {
+
 }
 
 // включить влидацию для всех форм
@@ -94,6 +114,7 @@ const renderUserInfo = () => {
       console.log(result);
       userInfo.setUserInfo(result);
       userInfo.setUserAvatar(result);
+      userInfo.setUserId(result);
     }); 
 }
   

@@ -24,11 +24,13 @@
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <p class="profile__about-self">Исследователь океана</p>
             <button type="button" class="profile__edit-button">
-              <img src="<%=require('./images/profile__edit-icon.svg')%>" alt="Редактировать профиль" class="profile__edit-icon">
+              <img src="<%=require('./images/profile__edit-icon.svg')%>" alt="Редактировать профиль"
+                class="profile__edit-icon">
             </button>
           </div>
           <button type="button" class="profile__add-button">
-            <img src="<%=require('./images/profile__add-icon.svg')%>" alt="Добавить изображение" class="profile__add-icon">
+            <img src="<%=require('./images/profile__add-icon.svg')%>" alt="Добавить изображение"
+              class="profile__add-icon">
           </button>
         </section>
         <ul class="elements">
@@ -96,6 +98,22 @@
           <p class="popup__image-caption"></p>
         </div>
       </div>
+      <div class="popup popup_contain_confirm">
+        <div class="popup__container popup__container_contain_confirm">
+          <button type="button" class="popup__close-button">
+            <img src="<%=require('./images/popup__close-icon.svg')%>" alt="Закрыть" class="popup__close-icon">
+          </button>
+          <form novalidate name="confirm" class="editing-form editing-form_related-to_confirm"
+            id="confirm" method="get">
+            <fieldset class="editing-form__fieldset" form="confirm">
+              <legend class="editing-form__legend editing-form__legend_related-to_confirm">
+                Вы уверены?
+              </legend>
+              <button type="submit" class="editing-form__button">Да</button>
+            </fieldset>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -107,8 +125,19 @@
         <button type="button" class="elements__button-like"></button>
         <p class="elements__likes-counter"></p>
       </div>
-      
       <button type="button" class="elements__button-delete"></button>
+    </li>
+  </template>
+
+  <template id="card-template-without-del">
+    <li class="elements__element">
+      <img src="#" alt="" class="elements__image">
+      <p class="elements__location"></p>
+      <div class="elements__button-like-container">
+        <button type="button" class="elements__button-like"></button>
+        <p class="elements__likes-counter"></p>
+      </div>
+      <button type="button" class="elements__button-delete" style="display: none"></button>
     </li>
   </template>
 

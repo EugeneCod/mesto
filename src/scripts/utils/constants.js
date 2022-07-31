@@ -29,12 +29,14 @@ export const openEditProfileButton = document.querySelector('.profile__edit-butt
 export const openAddCardButton = document.querySelector('.profile__add-button');
 
 export const cardTemplateSelector = '#card-template';
+export const cardTemplateSelectorWidthoutDel = '#card-template-without-del';
 export const cardContainerSelector = '.elements';
 export const popupImageSelector = '.popup__image';
 export const popupImageCaptionSelector = '.popup__image-caption';
 export const popupWithImageSelector = '.popup_contain_picture';
 export const popupEditProfileSelector = '.popup_contain_edit-profile';
 export const popupAddCardsSelector = '.popup_contain_add-cards';
+export const popupWithConfirmSelector = '.popup_contain_confirm';
 export const formSelector = '.editing-form';
 export const InputSelector = '.editing-form__input-line';
 

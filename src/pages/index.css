@@ -40,6 +40,7 @@
 @import url(../blocks/editing-form/__input-line/_assignment/editing-form__input-line_assignment_location.css);
 @import url(../blocks/editing-form/__input-line/_assignment/editing-form__input-line_assignment_user-name.css);
 @import url(../blocks/editing-form/__legend/editing-form__legend.css);
+@import url(../blocks/editing-form/__legend/_related-to/editing-form__legend_related-to_confirm.css);
 
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo-image/haeder__logo-image.css);

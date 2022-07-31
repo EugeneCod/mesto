@@ -21,6 +21,15 @@ export default class UserInfo {
     this.profileImage.src = data.avatar;
   }
 
+  getUserId() {
+    return this.id;
+  }
+
+  setUserId(data) {
+    this.id = data._id;
+  }
+
+
   updateUserInfo(data) {
     fetch('https://mesto.nomoreparties.co/v1/cohort-47/users/me', {
       method: 'PATCH',

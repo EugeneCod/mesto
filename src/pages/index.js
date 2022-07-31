@@ -61,10 +61,29 @@ const popupWithFormAddCards = new PopupWithForm({
 // экз. класса окна с подтвержением удаления
 const popupWithConfirmDel = new PopupWithConfirm({
   popupSelector: popupWithConfirmSelector,
-  handleFormSubmit: (id) => {
-    _handleDeleteCard()
+  handleFormSubmit: (cardId, element) => {
+    const promise = new Promise((resolve, reject) => {
+    //   fetch(`https://mesto.nomoreparties.co/v1/cohort-47/cards/${cardId}`, {
+    //   method: 'DELETE',
+    //   headers: {
+    //     authorization: 'fecf0c0a-0938-47a0-bc3a-dfac6e5ffd59'
+    //   }
+    // })
+    // .then(response => response.json())
+    // .then(data => console.log(data));
+    console.log('Запрос на сервер выполнен.');
+    resolve();
+    });
+    promise
+      .then(cardList.deleteItem(element))
   }
 });
+
+// popupWithConfirmDel.open();
+const button = document.querySelector('.profile__image');
+button.addEventListener('click', () => {
+  popupWithConfirmDel.open();
+})
 
 // экз. класса Section для отрисовки карточек
 const cardList = new Section({
@@ -75,7 +94,7 @@ const cardList = new Section({
     } else {
       templateSelector = cardTemplateSelectorWidthoutDel;
     }
-    const card = new Card(item, templateSelector, handleCardClick);
+    const card = new Card(item, templateSelector, handleCardClick, handleDeleteCard);
     const cardElement = card.generateCard();
     cardList.addItem(cardElement, method);
   }
@@ -86,8 +105,8 @@ const handleCardClick = (name, link) => {
   popupWithImage.open(name, link);
 }
 
-const handleDeleteCard = (id) => {
-
+const handleDeleteCard = (cardId, cardElement) => {
+  popupWithConfirmDel.open(cardId, cardElement);
 }
 
 // включить влидацию для всех форм
@@ -153,6 +172,7 @@ openAddCardButton.addEventListener('click', () => {
 popupWithImage.setEventListeners();
 popupWithFormEditProfile.setEventListeners();
 popupWithFormAddCards.setEventListeners();
+popupWithConfirmDel.setEventListeners();
 enableValidation(configValidation);
 
 renderUserInfo();

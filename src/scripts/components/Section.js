@@ -22,4 +22,9 @@ export default class Section {
       this._renderer(item, method);
     });
   }
+
+  deleteItem(element) {
+    element.remove();
+  }
 }
+

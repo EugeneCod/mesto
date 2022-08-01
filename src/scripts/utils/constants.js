@@ -1,30 +1,3 @@
-/* export  const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-]; */
-
 export const openEditProfileButton = document.querySelector('.profile__edit-button');
 export const openAddCardButton = document.querySelector('.profile__add-button');
 
@@ -44,6 +17,11 @@ export const profileSelectors = {
   nameSelector: '.profile__name',
   aboutSelfSelector: '.profile__about-self',
   profileImageSelector: '.profile__image'
+}
+
+export const configApi = {
+  host: 'https://mesto.nomoreparties.co/v1/cohort-47',
+  token: 'fecf0c0a-0938-47a0-bc3a-dfac6e5ffd59'
 }
 
 export const configValidation = {

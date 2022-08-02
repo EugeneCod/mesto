@@ -24,6 +24,18 @@ export default class Api {
     .then(this._getJsonOrError)
   }
 
+  setUserInfo(data) {
+    return fetch(`${this._host}/users/me`, {
+      method: 'PATCH',
+      headers: this._getHeaders(),
+      body: JSON.stringify({
+        name: data.name,
+        about: data.about
+      })
+    })
+    .then(this._getJsonOrError)
+  }
+
   getCards() {
     return fetch(`${this._host}/cards`, {
       headers: this._getHeaders()

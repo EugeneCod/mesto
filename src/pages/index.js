@@ -28,7 +28,12 @@ const formValidators = {}
 const api = new Api(configApi);
 
 // экз. класса информацции профиля
-const userInfo = new UserInfo(profileSelectors);
+const userInfo = new UserInfo({ 
+  selectors: profileSelectors,
+  fetchUserInfo: (data) => {
+    return api.setUserInfo(data);
+  }
+});
 
 // экз. класса окна просмотра изображения карточки
 const popupWithImage = new PopupWithImage({ popupSelector: popupWithImageSelector });
@@ -37,7 +42,7 @@ const popupWithImage = new PopupWithImage({ popupSelector: popupWithImageSelecto
 const popupWithFormEditProfile = new PopupWithForm({
   popupSelector: popupEditProfileSelector,
   handleFormSubmit: (formData) => {
-    userInfo.updateUserInfo(formData);
+    userInfo.setUserInfoOnServer(formData);
   }
 });
 
@@ -139,7 +144,7 @@ const enableValidation = (config) => {
 api.getUserInfo()
   .then((data) => {
     console.log(data);
-    userInfo.setUserInfo(data);
+    userInfo.setUserInfoOnClient(data);
     userInfo.setUserAvatar(data);
     userInfo.setUserId(data);
   })

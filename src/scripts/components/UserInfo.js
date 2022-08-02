@@ -1,8 +1,9 @@
 export default class UserInfo {
-  constructor(data) {
-    this.name = document.querySelector(data.nameSelector);
-    this.about = document.querySelector(data.aboutSelfSelector);
-    this.profileImage = document.querySelector(data.profileImageSelector);
+  constructor({ selectors, fetchUserInfo }) {
+    this.name = document.querySelector(selectors.nameSelector);
+    this.about = document.querySelector(selectors.aboutSelfSelector);
+    this.profileImage = document.querySelector(selectors.profileImageSelector);
+    this.fetchUserInfo = fetchUserInfo;
   }
 
   getUserInfo() {
@@ -12,9 +13,17 @@ export default class UserInfo {
     };
   }
 
-  setUserInfo(data) {
+  setUserInfoOnClient(data) {
     this.name.textContent = data.name;
     this.about.textContent = data.about;
+  }
+
+  setUserInfoOnServer(data) {
+    this.fetchUserInfo(data)
+    .then((dataJson) => {
+      this.setUserInfoOnClient(dataJson)
+    })
+    .catch(err => console.log(err));
   }
 
   setUserAvatar(data) {
@@ -27,23 +36,6 @@ export default class UserInfo {
 
   setUserId(data) {
     this.id = data._id;
-  }
-
-
-  updateUserInfo(data) {
-    fetch('https://mesto.nomoreparties.co/v1/cohort-47/users/me', {
-      method: 'PATCH',
-      headers: {
-        authorization: 'fecf0c0a-0938-47a0-bc3a-dfac6e5ffd59',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        name: data.name,
-        about: data.about
-      })
-    })
-    .then(response => response.json())
-    .then(data => this.setUserInfo(data))
   }
   
   updateUserAvatar(data) {

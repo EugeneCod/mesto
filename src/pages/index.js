@@ -50,19 +50,9 @@ const popupWithFormEditProfile = new PopupWithForm({
 const popupWithFormAddCards = new PopupWithForm({
   popupSelector: popupAddCardsSelector,
   handleFormSubmit: (formData) => {
-    fetch('https://mesto.nomoreparties.co/v1/cohort-47/cards', {
-      method: 'POST',
-      headers: {
-        authorization: 'fecf0c0a-0938-47a0-bc3a-dfac6e5ffd59',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        name: formData.name,
-        link: formData.link
-      })
-    })
-      .then(response => response.json())
-      .then(data => cardList.renderItem(data, 'prepend'))
+    api.addCard(formData)
+      .then(dataJson => cardList.renderItem(dataJson, 'prepend'))
+      .catch(err => console.log(err))
   }
 });
 
@@ -143,7 +133,6 @@ const enableValidation = (config) => {
 // загрузить и отобразить данные профиля
 api.getUserInfo()
   .then((data) => {
-    console.log(data);
     userInfo.setUserInfoOnClient(data);
     userInfo.setUserAvatar(data);
     userInfo.setUserId(data);

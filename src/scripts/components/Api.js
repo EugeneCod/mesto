@@ -43,6 +43,18 @@ export default class Api {
     .then(this._getJsonOrError)
   }
 
+  addCard(data) {
+    return fetch(`${this._host}/cards`, {
+      method: 'POST',
+      headers: this._getHeaders(),
+      body: JSON.stringify({
+        name: data.name,
+        link: data.link
+      })
+    })
+    .then(this._getJsonOrError)
+  }
+
   toggleLike(isLiked, cardId) {
     let method;
     if (isLiked) {

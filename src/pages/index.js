@@ -60,19 +60,7 @@ const popupWithFormAddCards = new PopupWithForm({
 const popupWithConfirmDel = new PopupWithConfirm({
   popupSelector: popupWithConfirmSelector,
   handleFormSubmit: (cardId, element) => {
-    const promise = new Promise((resolve, reject) => {
-      //   fetch(`https://mesto.nomoreparties.co/v1/cohort-47/cards/${cardId}`, {
-      //   method: 'DELETE',
-      //   headers: {
-      //     authorization: 'fecf0c0a-0938-47a0-bc3a-dfac6e5ffd59'
-      //   }
-      // })
-      // .then(response => response.json())
-      // .then(data => console.log(data));
-      console.log('Запрос на сервер выполнен.');
-      resolve();
-    });
-    promise
+    api.deleteCard(cardId)
       .then(cardList.deleteItem(element))
   }
 });

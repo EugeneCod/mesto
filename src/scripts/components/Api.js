@@ -55,6 +55,13 @@ export default class Api {
     .then(this._getJsonOrError)
   }
 
+  deleteCard(cardId) {
+    return fetch(`${this._host}/cards/${cardId}`, {
+      method: 'DELETE',
+      headers: this._getHeaders(),
+    })
+  }
+
   toggleLike(isLiked, cardId) {
     let method;
     if (isLiked) {

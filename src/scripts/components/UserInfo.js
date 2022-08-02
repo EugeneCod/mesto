@@ -26,6 +26,10 @@ export default class UserInfo {
     .catch(err => console.log(err));
   }
 
+  getUserAvatar() {
+    return this.profileImage.src;
+  }
+
   setUserAvatar(data) {
     this.profileImage.src = data.avatar;
   }

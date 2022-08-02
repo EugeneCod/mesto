@@ -19,7 +19,9 @@
     <div class="container">
       <main class="content">
         <section class="profile" aria-label="Информация о пользователе">
-          <img src="<%=require('./images/profile__image.jpg')%>" alt="Аватар" class="profile__image">
+          <div class="profile__image-container">
+            <img src="<%=require('./images/profile__image.jpg')%>" alt="Аватар" class="profile__image">
+          </div>
           <div class="profile__profile-info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <p class="profile__about-self">Исследователь океана</p>
@@ -96,6 +98,27 @@
           </button>
           <img src="#" alt="" class="popup__image">
           <p class="popup__image-caption"></p>
+        </div>
+      </div>
+      <div class="popup popup_contain_edit-avatar">
+        <div class="popup__container popup__container_contain_edit-avatar">
+          <button type="button" class="popup__close-button">
+            <img src="<%=require('./images/popup__close-icon.svg')%>" alt="Закрыть" class="popup__close-icon">
+          </button>
+          <form novalidate name="edit-avatar" class="editing-form editing-form_related-to_edit-avatar" id="edit-avatar"
+          method="get">
+            <fieldset class="editing-form__fieldset" form="edit-avatar">
+              <legend class="editing-form__legend editing-form__legend_edit-avatar">
+                Обновить аватар
+              </legend>
+              <label class="editing-form__field">
+                <input type="url" name="avatar" id="avatar" placeholder="Ссылка на картинку" required
+                  class="editing-form__input-line editing-form__input-line_assignment_avatar">
+                <span class="editing-form__input-error editing-form__input-error_for_avatar"></span>
+              </label>
+              <button type="submit" class="editing-form__button">Сохранить</button>
+            </fieldset>
+          </form>
         </div>
       </div>
       <div class="popup popup_contain_confirm">

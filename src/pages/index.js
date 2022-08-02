@@ -18,6 +18,7 @@ import {
   cardContainerSelector,
   popupWithImageSelector,
   popupEditProfileSelector,
+  popupEditAvatarSelector,
   popupAddCardsSelector,
   popupWithConfirmSelector,
   profileSelectors,
@@ -56,6 +57,14 @@ const popupWithFormAddCards = new PopupWithForm({
   }
 });
 
+// экз. класса окна с формой редактирования аватара
+const popupWithFormEditAvatar = new PopupWithForm({
+  popupSelector: popupEditAvatarSelector,
+  handleFormSubmit: (formData) => {
+    userInfo.setUserAvatarOnServer(formData);
+  }
+});
+
 // экз. класса окна с подтвержением удаления
 const popupWithConfirmDel = new PopupWithConfirm({
   popupSelector: popupWithConfirmSelector,
@@ -66,10 +75,10 @@ const popupWithConfirmDel = new PopupWithConfirm({
 });
 
 // popupWithConfirmDel.open();
-const button = document.querySelector('.profile__image');
-button.addEventListener('click', () => {
-  popupWithConfirmDel.open();
-})
+// const button = document.querySelector('.profile__image');
+// button.addEventListener('click', () => {
+//   popupWithConfirmDel.open();
+// })
 
 // экз. класса Section для отрисовки карточек
 const cardList = new Section({
@@ -148,27 +157,9 @@ openAddCardButton.addEventListener('click', () => {
   formValidators['addCards'].resetValidation();
 });
 
-
 // cardList.renderItems();
 popupWithImage.setEventListeners();
 popupWithFormEditProfile.setEventListeners();
 popupWithFormAddCards.setEventListeners();
 popupWithConfirmDel.setEventListeners();
 enableValidation(configValidation);
-
-// renderUserInfo();
-// renderCards();
-
-// fetch('https://mesto.nomoreparties.co/v1/cohort-47/users/me', {
-//       method: 'PATCH',
-//       headers: {
-//         authorization: 'fecf0c0a-0938-47a0-bc3a-dfac6e5ffd59',
-//         'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify({
-//         name: 'Jacques',
-//         about: 'Sailor'
-//       })
-//     })
-//     .then(response => response.json())
-//     .then(data => console.log(data))

@@ -13,8 +13,7 @@ import {
   openAddCardButton,
   configValidation,
   configApi,
-  cardTemplateSelector,
-  cardTemplateSelectorWidthoutDel,
+  configCard,
   cardContainerSelector,
   popupWithImageSelector,
   popupEditProfileSelector,
@@ -84,15 +83,9 @@ const popupWithConfirmDel = new PopupWithConfirm({
 const cardList = new Section({
   renderer: (item, method) => {
     const userId = userInfo.getUserId();
-    let templateSelector;
-    if (item.owner._id === userId) {
-      templateSelector = cardTemplateSelector;
-    } else {
-      templateSelector = cardTemplateSelectorWidthoutDel;
-    }
     const card = new Card(
       item,
-      templateSelector,
+      configCard,
       userId,
       handleCardClick,
       handleDeleteCard,

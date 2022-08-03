@@ -20,6 +20,17 @@ export const profileSelectors = {
   profileImageSelector: '.profile__image'
 }
 
+export const configCard = {
+  cardTemplateSelector: '#card-template',
+  contentTemplateSelector: '.elements__element',
+  buttonLikeSelector: '.elements__button-like',
+  likesCounterSelector: '.elements__likes-counter',
+  buttonDeleteSelector: '.elements__button-delete',
+  imageSelector: '.elements__image',
+  locationSelector: '.elements__location',
+  buttonLikeActiveClass: 'elements__button-like_active',
+}
+
 export const configApi = {
   host: 'https://mesto.nomoreparties.co/v1/cohort-47',
   token: 'fecf0c0a-0938-47a0-bc3a-dfac6e5ffd59'

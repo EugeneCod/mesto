@@ -1,8 +1,9 @@
 export const openEditProfileButton = document.querySelector('.profile__edit-button');
 export const openAddCardButton = document.querySelector('.profile__add-button');
+export const avatarElement = document.querySelector('.profile__image');
 
-export const cardTemplateSelector = '#card-template';
-export const cardTemplateSelectorWidthoutDel = '#card-template-without-del';
+
+
 export const cardContainerSelector = '.elements';
 export const popupImageSelector = '.popup__image';
 export const popupImageCaptionSelector = '.popup__image-caption';
@@ -14,10 +15,10 @@ export const popupWithConfirmSelector = '.popup_contain_confirm';
 export const formSelector = '.editing-form';
 export const InputSelector = '.editing-form__input-line';
 
-export const profileSelectors = {
+export const configProfile = {
   nameSelector: '.profile__name',
   aboutSelfSelector: '.profile__about-self',
-  profileImageSelector: '.profile__image'
+  profileImageSelector: '.profile__image',
 }
 
 export const configCard = {

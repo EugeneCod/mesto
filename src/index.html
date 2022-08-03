@@ -20,11 +20,11 @@
       <main class="content">
         <section class="profile" aria-label="Информация о пользователе">
           <div class="profile__image-container">
-            <img src="<%=require('./images/profile__image.jpg')%>" alt="Аватар" class="profile__image">
+            <img src="#" alt="Аватар" class="profile__image">
           </div>
           <div class="profile__profile-info">
-            <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <p class="profile__about-self">Исследователь океана</p>
+            <h1 class="profile__name"></h1>
+            <p class="profile__about-self"></p>
             <button type="button" class="profile__edit-button">
               <img src="<%=require('./images/profile__edit-icon.svg')%>" alt="Редактировать профиль"
                 class="profile__edit-icon">
@@ -149,18 +149,6 @@
         <p class="elements__likes-counter">0</p>
       </div>
       <button type="button" class="elements__button-delete"></button>
-    </li>
-  </template>
-
-  <template id="card-template-without-del">
-    <li class="elements__element">
-      <img src="#" alt="" class="elements__image">
-      <p class="elements__location"></p>
-      <div class="elements__button-like-container">
-        <button type="button" class="elements__button-like"></button>
-        <p class="elements__likes-counter">0</p>
-      </div>
-      <button type="button" class="elements__button-delete" style="display: none"></button>
     </li>
   </template>
 

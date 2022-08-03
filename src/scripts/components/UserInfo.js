@@ -1,9 +1,10 @@
 export default class UserInfo {
-  constructor({ selectors, fetchUserInfo }) {
-    this.name = document.querySelector(selectors.nameSelector);
-    this.about = document.querySelector(selectors.aboutSelfSelector);
-    this.profileImage = document.querySelector(selectors.profileImageSelector);
+  constructor({ config, fetchUserInfo, fetchUserAvatar }) {
+    this.name = document.querySelector(config.nameSelector);
+    this.about = document.querySelector(config.aboutSelfSelector);
+    this.profileImage = document.querySelector(config.profileImageSelector);
     this.fetchUserInfo = fetchUserInfo;
+    this.fetchUserAvatar = fetchUserAvatar;
   }
 
   getUserInfo() {
@@ -30,8 +31,16 @@ export default class UserInfo {
     return this.profileImage.src;
   }
 
-  setUserAvatar(data) {
+  setUserAvatarOnClient(data) {
     this.profileImage.src = data.avatar;
+  }
+
+  setUserAvatarOnServer(data) {
+    this.fetchUserAvatar(data)
+    .then((dataJson) => {
+      this.setUserAvatarOnClient(dataJson)
+    })
+    .catch(err => console.log(err));
   }
 
   getUserId() {
@@ -40,21 +49,6 @@ export default class UserInfo {
 
   setUserId(data) {
     this.id = data._id;
-  }
-  
-  updateUserAvatar(data) {
-    fetch('https://mesto.nomoreparties.co/v1/cohort-47/users/me', {
-      method: 'PATCH',
-      headers: {
-        authorization: 'fecf0c0a-0938-47a0-bc3a-dfac6e5ffd59',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        avatar: data.avatar
-      })
-    })
-    .then(response => response.json())
-    .then(data => this.setUserAvatar(data))
   }
 }
 

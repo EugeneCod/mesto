@@ -11,16 +11,18 @@ import FormValidator from '../scripts/components/FormValidator.js';
 import {
   openEditProfileButton,
   openAddCardButton,
+  avatarElement,
   configValidation,
   configApi,
   configCard,
+  configProfile,
   cardContainerSelector,
   popupWithImageSelector,
   popupEditProfileSelector,
   popupEditAvatarSelector,
   popupAddCardsSelector,
   popupWithConfirmSelector,
-  profileSelectors,
+  
 } from '../scripts/utils/constants.js';
 
 const formValidators = {}
@@ -29,10 +31,13 @@ const api = new Api(configApi);
 
 // экз. класса информацции профиля
 const userInfo = new UserInfo({ 
-  selectors: profileSelectors,
+  config: configProfile,
   fetchUserInfo: (data) => {
     return api.setUserInfo(data);
-  }
+  },
+  fetchUserAvatar: (data) => {
+    return api.setAvatar(data);
+  },
 });
 
 // экз. класса окна просмотра изображения карточки
@@ -42,7 +47,7 @@ const popupWithImage = new PopupWithImage({ popupSelector: popupWithImageSelecto
 const popupWithFormEditProfile = new PopupWithForm({
   popupSelector: popupEditProfileSelector,
   handleFormSubmit: (formData) => {
-    userInfo.setUserInfoOnServer(formData);
+    userInfo.setUserInfoOnServer(formData)
   }
 });
 
@@ -60,7 +65,7 @@ const popupWithFormAddCards = new PopupWithForm({
 const popupWithFormEditAvatar = new PopupWithForm({
   popupSelector: popupEditAvatarSelector,
   handleFormSubmit: (formData) => {
-    userInfo.setUserAvatarOnServer(formData);
+    userInfo.setUserAvatarOnServer(formData)
   }
 });
 
@@ -72,12 +77,6 @@ const popupWithConfirmDel = new PopupWithConfirm({
       .then(cardList.deleteItem(element))
   }
 });
-
-// popupWithConfirmDel.open();
-// const button = document.querySelector('.profile__image');
-// button.addEventListener('click', () => {
-//   popupWithConfirmDel.open();
-// })
 
 // экз. класса Section для отрисовки карточек
 const cardList = new Section({
@@ -124,7 +123,7 @@ const enableValidation = (config) => {
 api.getUserInfo()
   .then((data) => {
     userInfo.setUserInfoOnClient(data);
-    userInfo.setUserAvatar(data);
+    userInfo.setUserAvatarOnClient(data);
     userInfo.setUserId(data);
   })
 
@@ -144,15 +143,21 @@ openEditProfileButton.addEventListener('click', () => {
   formValidators['editingForm'].resetValidation();
 });
 
+// открытие формы редактирования аватара
+avatarElement.addEventListener('click', () => {
+  popupWithFormEditAvatar.open()
+  formValidators['edit-avatar'].resetValidation();
+});
+
 // открытие формы добавления карточек
 openAddCardButton.addEventListener('click', () => {
   popupWithFormAddCards.open()
   formValidators['addCards'].resetValidation();
 });
 
-// cardList.renderItems();
 popupWithImage.setEventListeners();
 popupWithFormEditProfile.setEventListeners();
 popupWithFormAddCards.setEventListeners();
 popupWithConfirmDel.setEventListeners();
+popupWithFormEditAvatar.setEventListeners();
 enableValidation(configValidation);

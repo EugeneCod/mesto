@@ -36,6 +36,18 @@ export default class Api {
     .then(this._getJsonOrError)
   }
 
+  setAvatar(data) {
+    return fetch(`${this._host}/users/me/avatar `, {
+      method: 'PATCH',
+      headers: this._getHeaders(),
+      body: JSON.stringify({
+        avatar: data.avatar
+      })
+    })
+    .then(this._getJsonOrError)
+    
+  }
+
   getCards() {
     return fetch(`${this._host}/cards`, {
       headers: this._getHeaders()

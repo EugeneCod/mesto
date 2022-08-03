@@ -16,6 +16,7 @@
 }
 
 .profile__image-container::before {
+  pointer-events: none;
   transition: opacity .3s ease-out;
   content: "";
   position: absolute;
@@ -34,6 +35,7 @@
 
 
 .profile__image-container::after {
+  pointer-events: none;
   transition: transform .4s ease-out;
   transform: scale(.0);
   content: "";

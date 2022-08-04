@@ -31,12 +31,6 @@ const api = new Api(configApi);
 // экз. класса информацции профиля
 const userInfo = new UserInfo({
   config: configProfile,
-  fetchUserInfo: (data) => {
-    return api.setUserInfo(data);
-  },
-  fetchUserAvatar: (data) => {
-    return api.setAvatar(data);
-  },
 });
 
 // экз. класса окна просмотра изображения карточки
@@ -45,26 +39,55 @@ const popupWithImage = new PopupWithImage({ popupSelector: popupWithImageSelecto
 // экз. класса окна с формой редактирования профиля
 const popupWithFormEditProfile = new PopupWithForm({
   popupSelector: popupEditProfileSelector,
-  handleFormSubmit: (formData) => {
-    return userInfo.setUserInfoOnServer(formData)
+  handleFormSubmit: (evt, formData) => {
+    evt.preventDefault();
+    popupWithFormEditProfile.renderLoading(true);
+    api.setUserInfo(formData)
+    .then((jsonData) => {
+      userInfo.setUserInfo(jsonData);
+      popupWithFormEditProfile.close();
+    })
+    .catch(err => console.log(err))
+    .finally(()=> {
+      popupWithFormEditProfile.renderLoading(false);
+    })
   }
 });
 
 // экз. класса окна с формой добавления карточек
 const popupWithFormAddCards = new PopupWithForm({
   popupSelector: popupAddCardsSelector,
-  handleFormSubmit: (formData) => {
-    return api.addCard(formData)
-      .then(dataJson => cardList.renderItem(dataJson, 'prepend'))
-      .catch(err => console.log(err))
+  handleFormSubmit: (evt, formData) => {
+    evt.preventDefault();
+    popupWithFormAddCards.renderLoading(true);
+    api.addCard(formData)
+    .then((jsonData) => {
+      cardList.renderItem(jsonData, 'prepend');
+      popupWithFormAddCards.close();
+    })
+    .catch(err => console.log(err))
+    .finally(()=> {
+      popupWithFormAddCards.renderLoading(false);
+    })
   }
 });
+    
 
 // экз. класса окна с формой редактирования аватара
 const popupWithFormEditAvatar = new PopupWithForm({
   popupSelector: popupEditAvatarSelector,
-  handleFormSubmit: (formData) => {
-    return userInfo.setUserAvatarOnServer(formData)
+  handleFormSubmit: (evt, formData) => {
+    evt.preventDefault();
+    popupWithFormEditAvatar.renderLoading(true);
+    api.setAvatar(formData)
+    .then((jsonData) => {
+      userInfo.setUserAvatar(jsonData);
+      popupWithFormEditAvatar.close();
+    })
+    .catch(err => console.log(err))
+    .finally(()=> {
+      popupWithFormEditAvatar.renderLoading(false);
+    })
   }
 });
 
@@ -73,7 +96,11 @@ const popupWithConfirmDel = new PopupWithConfirmation({
   popupSelector: popupWithConfirmSelector,
   handleFormSubmit: (cardId, element) => {
     api.deleteCard(cardId)
-      .then(cardList.deleteItem(element))
+      .then(() => {
+        cardList.deleteItem(element);
+        popupWithConfirmDel.close();
+      })
+      .catch(err => console.log(err))
   }
 });
 
@@ -126,8 +153,8 @@ Promise.all([
   api.getCards(),
 ])
   .then(([userData, cardsData]) => {
-    userInfo.setUserInfoOnClient(userData);
-    userInfo.setUserAvatarOnClient(userData);
+    userInfo.setUserInfo(userData);
+    userInfo.setUserAvatar(userData);
     userInfo.setUserId(userData);
 
     cardList.renderItems(cardsData, 'append');

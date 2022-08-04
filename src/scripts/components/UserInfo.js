@@ -1,10 +1,8 @@
 export default class UserInfo {
-  constructor({ config, fetchUserInfo, fetchUserAvatar }) {
+  constructor({ config }) {
     this.name = document.querySelector(config.nameSelector);
     this.about = document.querySelector(config.aboutSelfSelector);
     this.profileImage = document.querySelector(config.profileImageSelector);
-    this.fetchUserInfo = fetchUserInfo;
-    this.fetchUserAvatar = fetchUserAvatar;
   }
 
   getUserInfo() {
@@ -14,33 +12,17 @@ export default class UserInfo {
     };
   }
 
-  setUserInfoOnClient(data) {
+  setUserInfo(data) {
     this.name.textContent = data.name;
     this.about.textContent = data.about;
-  }
-
-  setUserInfoOnServer(data) {
-    return this.fetchUserInfo(data)
-    .then((dataJson) => {
-      this.setUserInfoOnClient(dataJson)
-    })
-    .catch(err => console.log(err));
   }
 
   getUserAvatar() {
     return this.profileImage.src;
   }
 
-  setUserAvatarOnClient(data) {
+  setUserAvatar(data) {
     this.profileImage.src = data.avatar;
-  }
-
-  setUserAvatarOnServer(data) {
-    return this.fetchUserAvatar(data)
-    .then((dataJson) => {
-      this.setUserAvatarOnClient(dataJson)
-    })
-    .catch(err => console.log(err));
   }
 
   getUserId() {

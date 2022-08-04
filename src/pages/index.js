@@ -3,7 +3,7 @@ import Api from '../scripts/components/Api.js';
 import UserInfo from '../scripts/components/UserInfo.js';
 import PopupWithImage from '../scripts/components/PopupWithImage.js';
 import PopupWithForm from '../scripts/components/PopupWithForm.js';
-import PopupWithConfirm from '../scripts/components/PopupWIthConfirm.js'
+import PopupWithConfirmation from '../scripts/components/PopupWithConfirmation.js.js'
 import Card from '../scripts/components/Card.js';
 import Section from '../scripts/components/Section.js';
 import FormValidator from '../scripts/components/FormValidator.js';
@@ -22,7 +22,6 @@ import {
   popupEditAvatarSelector,
   popupAddCardsSelector,
   popupWithConfirmSelector,
-
 } from '../scripts/utils/constants.js';
 
 const formValidators = {}
@@ -48,17 +47,6 @@ const popupWithFormEditProfile = new PopupWithForm({
   popupSelector: popupEditProfileSelector,
   handleFormSubmit: (formData) => {
     return userInfo.setUserInfoOnServer(formData)
-    // api.setUserInfo(formData)
-    //   .then((dataJson) => {
-    //     userInfo.setUserInfoOnClient(dataJson);
-    //   })
-    //   .catch(err => console.log(err))
-    //   .finally(() => {
-    //     popupWithFormEditProfile.renderLoading(false);
-    //     popupWithFormEditProfile.close();
-    //   })
-
-
   }
 });
 
@@ -81,7 +69,7 @@ const popupWithFormEditAvatar = new PopupWithForm({
 });
 
 // экз. класса окна с подтвержением удаления
-const popupWithConfirmDel = new PopupWithConfirm({
+const popupWithConfirmDel = new PopupWithConfirmation({
   popupSelector: popupWithConfirmSelector,
   handleFormSubmit: (cardId, element) => {
     api.deleteCard(cardId)
@@ -110,10 +98,12 @@ const handleCardClick = (name, link) => {
   popupWithImage.open(name, link);
 }
 
+// обработать клик по иконке удаления
 const handleDeleteCard = (cardId, cardElement) => {
   popupWithConfirmDel.open(cardId, cardElement);
 }
 
+// обработать клик по иконке лайка
 const handleBtnLike = (cardId, isLiked) => {
   return api.toggleLike(cardId, isLiked);
 }

@@ -20,7 +20,7 @@ export default class UserInfo {
   }
 
   setUserInfoOnServer(data) {
-    this.fetchUserInfo(data)
+    return this.fetchUserInfo(data)
     .then((dataJson) => {
       this.setUserInfoOnClient(dataJson)
     })
@@ -36,7 +36,7 @@ export default class UserInfo {
   }
 
   setUserAvatarOnServer(data) {
-    this.fetchUserAvatar(data)
+    return this.fetchUserAvatar(data)
     .then((dataJson) => {
       this.setUserAvatarOnClient(dataJson)
     })

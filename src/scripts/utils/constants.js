@@ -13,7 +13,9 @@ export const popupEditAvatarSelector = '.popup_contain_edit-avatar';
 export const popupAddCardsSelector = '.popup_contain_add-cards';
 export const popupWithConfirmSelector = '.popup_contain_confirm';
 export const formSelector = '.editing-form';
-export const InputSelector = '.editing-form__input-line';
+export const inputSelector = '.editing-form__input-line';
+export const buttonSubmitSelector = '.editing-form__button';
+
 
 export const configProfile = {
   nameSelector: '.profile__name',

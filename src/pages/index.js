@@ -22,7 +22,7 @@ import {
   popupEditAvatarSelector,
   popupAddCardsSelector,
   popupWithConfirmSelector,
-  
+
 } from '../scripts/utils/constants.js';
 
 const formValidators = {}
@@ -30,7 +30,7 @@ const formValidators = {}
 const api = new Api(configApi);
 
 // экз. класса информацции профиля
-const userInfo = new UserInfo({ 
+const userInfo = new UserInfo({
   config: configProfile,
   fetchUserInfo: (data) => {
     return api.setUserInfo(data);
@@ -47,7 +47,18 @@ const popupWithImage = new PopupWithImage({ popupSelector: popupWithImageSelecto
 const popupWithFormEditProfile = new PopupWithForm({
   popupSelector: popupEditProfileSelector,
   handleFormSubmit: (formData) => {
-    userInfo.setUserInfoOnServer(formData)
+    return userInfo.setUserInfoOnServer(formData)
+    // api.setUserInfo(formData)
+    //   .then((dataJson) => {
+    //     userInfo.setUserInfoOnClient(dataJson);
+    //   })
+    //   .catch(err => console.log(err))
+    //   .finally(() => {
+    //     popupWithFormEditProfile.renderLoading(false);
+    //     popupWithFormEditProfile.close();
+    //   })
+
+
   }
 });
 
@@ -55,7 +66,7 @@ const popupWithFormEditProfile = new PopupWithForm({
 const popupWithFormAddCards = new PopupWithForm({
   popupSelector: popupAddCardsSelector,
   handleFormSubmit: (formData) => {
-    api.addCard(formData)
+    return api.addCard(formData)
       .then(dataJson => cardList.renderItem(dataJson, 'prepend'))
       .catch(err => console.log(err))
   }
@@ -65,7 +76,7 @@ const popupWithFormAddCards = new PopupWithForm({
 const popupWithFormEditAvatar = new PopupWithForm({
   popupSelector: popupEditAvatarSelector,
   handleFormSubmit: (formData) => {
-    userInfo.setUserAvatarOnServer(formData)
+    return userInfo.setUserAvatarOnServer(formData)
   }
 });
 

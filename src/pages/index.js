@@ -120,19 +120,19 @@ const enableValidation = (config) => {
   });
 }
 
-// загрузить и отобразить данные профиля
-api.getUserInfo()
-  .then((data) => {
-    userInfo.setUserInfoOnClient(data);
-    userInfo.setUserAvatarOnClient(data);
-    userInfo.setUserId(data);
-  })
+// загрузить и отобразить данные профиля и карточки
+Promise.all([
+  api.getUserInfo(),
+  api.getCards(),
+])
+  .then(([userData, cardsData]) => {
+    userInfo.setUserInfoOnClient(userData);
+    userInfo.setUserAvatarOnClient(userData);
+    userInfo.setUserId(userData);
 
-// загрузить и отобразить карточки
-api.getCards()
-  .then((cards) => {
-    cardList.renderItems(cards, 'append');
+    cardList.renderItems(cardsData, 'append');
   })
+  .catch(err => console.log(`${err} при первичной загрузке данных`));
 
 // *-------------------Слушатели событий--------------------
 

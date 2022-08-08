@@ -3,7 +3,7 @@ export default class Card {
     this._link = item.link;
     this._name = item.name;
     this._arrayOfLikes = item.likes;
-    this._cardId = item._id;
+    this.cardId = item._id;
     this.config = configCard
     this._userId = userId;
     this._cardOwnerId = item.owner._id;
@@ -33,11 +33,11 @@ export default class Card {
     });
 
     this._buttonDelete.addEventListener('click', () => {
-      this._handleDeleteCard(this._cardId, this._element);
+      this._handleDeleteCard(this);
     });
 
     this._buttonLike.addEventListener('click', () => {
-      this._toggleLikeServer(this._isLiked, this._cardId)
+      this._toggleLikeServer(this._isLiked, this.cardId)
         .then((data) => {
           this._checkLiked(data.likes);
           this._toggleLike();
@@ -61,6 +61,10 @@ export default class Card {
     if (this._cardOwnerId !== this._userId) {
       this._buttonDelete.remove();
     }
+  }
+
+  deleteCard() {
+    this._element.remove();
   }
 
   generateCard() {

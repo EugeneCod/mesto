@@ -71,7 +71,6 @@ const popupWithFormAddCards = new PopupWithForm({
     })
   }
 });
-    
 
 // экз. класса окна с формой редактирования аватара
 const popupWithFormEditAvatar = new PopupWithForm({
@@ -94,10 +93,10 @@ const popupWithFormEditAvatar = new PopupWithForm({
 // экз. класса окна с подтвержением удаления
 const popupWithConfirmDel = new PopupWithConfirmation({
   popupSelector: popupWithConfirmSelector,
-  handleFormSubmit: (cardId, element) => {
-    api.deleteCard(cardId)
+  handleFormSubmit: (item) => {
+    api.deleteCard(item.cardId)
       .then(() => {
-        cardList.deleteItem(element);
+        item.deleteCard();
         popupWithConfirmDel.close();
       })
       .catch(err => console.log(err))
@@ -126,8 +125,8 @@ const handleCardClick = (name, link) => {
 }
 
 // обработать клик по иконке удаления
-const handleDeleteCard = (cardId, cardElement) => {
-  popupWithConfirmDel.open(cardId, cardElement);
+const handleDeleteCard = (item) => {
+  popupWithConfirmDel.open(item);
 }
 
 // обработать клик по иконке лайка

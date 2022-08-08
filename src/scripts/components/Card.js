@@ -7,7 +7,7 @@ export default class Card {
     this.config = configCard
     this._userId = userId;
     this._cardOwnerId = item.owner._id;
-    
+
     this._handleCardClick = handleCardClick;
     this._handleDeleteCard = handleDeleteCard;
     this._toggleLikeServer = toggleLikeServer;

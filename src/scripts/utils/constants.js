@@ -2,8 +2,6 @@ export const openEditProfileButton = document.querySelector('.profile__edit-butt
 export const openAddCardButton = document.querySelector('.profile__add-button');
 export const avatarElement = document.querySelector('.profile__image');
 
-
-
 export const cardContainerSelector = '.elements';
 export const popupImageSelector = '.popup__image';
 export const popupImageCaptionSelector = '.popup__image-caption';
@@ -15,7 +13,6 @@ export const popupWithConfirmSelector = '.popup_contain_confirm';
 export const formSelector = '.editing-form';
 export const inputSelector = '.editing-form__input-line';
 export const buttonSubmitSelector = '.editing-form__button';
-
 
 export const configProfile = {
   nameSelector: '.profile__name',

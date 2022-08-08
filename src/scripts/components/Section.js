@@ -10,12 +10,12 @@ export default class Section {
     } else if (method === 'append') {
       this._container.append(element);
     }
-    
+
   }
 
-  renderItem(item, method) { 
+  renderItem(item, method) {
     this._renderer(item, method);
-}
+  }
 
   renderItems(items, method) {
     items.forEach((item) => {
